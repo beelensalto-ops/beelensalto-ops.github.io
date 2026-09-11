@@ -457,7 +457,13 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .about__photo:hover img { transform: scale(1.05); }
 
 /* Tarjetas de promesa (Brandbook · 01 La marca) */
-.promise { display: grid; gap: 0.8rem; margin-top: var(--s-3); }
+/* Las tres fichas van una al lado de la otra, a lo ancho de la sección:
+   apiladas en una sola columna dejaban un vacío debajo de la foto. */
+.promise {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem; margin-top: var(--s-4);
+}
+@media (max-width: 880px) { .promise { grid-template-columns: 1fr; } }
 .pcard { border: var(--border); border-radius: var(--r-card); padding: 1.15rem 1.3rem; }
 .pcard dt {
   font-family: var(--f-mono); font-size: 0.64rem;
@@ -487,8 +493,26 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
    izquierda a derecha al entrar en pantalla. Sin ejes ni valores: es un
    gesto gráfico, no un gráfico de datos. */
 .statline {
+  position: relative;
   margin: var(--s-3) 0 var(--s-4);
   height: clamp(90px, 14vw, 170px);
+}
+/* El destello viaja por la punta de la línea mientras se dibuja */
+.statline__luz {
+  position: absolute; left: 0; top: 0;
+  width: 13px; height: 13px; margin: -6.5px 0 0 -6.5px;
+  border-radius: 50%; background: var(--c-data);
+  opacity: 0; pointer-events: none;
+  box-shadow: 0 0 10px 2px var(--c-data),
+              0 0 26px 8px color-mix(in srgb, var(--c-data) 45%, transparent),
+              0 0 60px 22px color-mix(in srgb, var(--c-data) 18%, transparent);
+  transition: opacity 320ms var(--e-out);
+}
+.statline__luz.is-on { opacity: 1; }
+.statline__luz.is-fin { animation: latido 2.6s ease-in-out infinite; }
+@keyframes latido {
+  0%, 100% { transform: scale(1);    opacity: 1;   }
+  50%      { transform: scale(1.18); opacity: 0.78; }
 }
 .statline svg { display: block; width: 100%; height: 100%; overflow: visible; }
 .statline__area {
@@ -498,15 +522,11 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .statline__l {
   fill: none; stroke: var(--c-data); stroke-width: 2.5;
   stroke-linecap: round; stroke-linejoin: round;
-  vector-effect: non-scaling-stroke;
-  stroke-dasharray: 1; stroke-dashoffset: 1;
-  transition: stroke-dashoffset 2200ms cubic-bezier(0.25, 0.7, 0.2, 1);
 }
-.statline.is-on .statline__l { stroke-dashoffset: 0; }
 .statline.is-on .statline__area { opacity: 0.12; }
 @media (prefers-reduced-motion: reduce) {
-  .statline__l { transition: none; stroke-dashoffset: 0; }
   .statline__area { transition: none; opacity: 0.12; }
+  .statline__luz { animation: none; }
 }
 
 .stat__lab {

@@ -333,7 +333,7 @@ const I18N = {
 
     /* --- Servicios (Brandbook · 01) --- */
     "srv.kicker": "Servicios",
-    "srv.title": "En qué te puedo ayudar.",
+    "srv.title": "¿En qué te puedo ayudar?",
     "srv.1": "Branding e identidad",
     "srv.1d": "Logo, paleta, tipografía y sistema visual.",
     "srv.2": "Social media management",
@@ -349,7 +349,7 @@ const I18N = {
 
     /* --- Herramientas --- */
     "tools.kicker": "Herramientas",
-    "tools.title": "Con qué trabajo todos los días.",
+    "tools.title": "Las herramientas con las que trabajo día a día.",
 
     /* --- Contacto --- */
     "cta.kicker": "Hablemos",
@@ -685,7 +685,7 @@ const I18N = {
     "srv.6d": "Classic and AI-assisted editing, avatars included.",
 
     "tools.kicker": "Tools",
-    "tools.title": "What I work with every day.",
+    "tools.title": "The tools I work with day to day.",
 
     "cta.kicker": "Let's talk",
     "cta.title1": "Tell me what your",

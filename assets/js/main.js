@@ -934,52 +934,105 @@
   }
 
   /* Una sola curva, ancha, debajo del título de Resultados. Se dibuja sola
-     al entrar en pantalla. No lleva ejes ni valores: es un gesto gráfico de
-     crecimiento, no un gráfico de datos. */
+     al entrar en pantalla, con un destello que viaja por la punta. No lleva
+     ejes ni valores: es un gesto gráfico de crecimiento, no un gráfico de
+     datos. Se arma en píxeles reales y se rehace al cambiar el ancho: si se
+     estirara un dibujo chico, el trazo saldría desparejo y cortado. */
   function dibujarCurva() {
     const caja = $('.statline');
-    if (!caja || $('svg', caja)) return;
+    if (!caja) return;
 
-    const N = 15, W = 100, H = 26;
-    let r = 20260911;
-    const paso = () => { r = (r * 1103515245 + 12345) % 2147483648; return r / 2147483648; };
+    const luz = document.createElement('span');
+    luz.className = 'statline__luz';
 
-    const pts = [];
-    for (let i = 0; i < N; i++) {
-      const t = i / (N - 1);
-      const base = 0.10 + Math.pow(t, 1.35) * 0.82;   // sube, y más fuerte al final
-      const ruido = (paso() - 0.5) * 0.055 * (1 - t * 0.5);
-      const v = Math.min(0.98, Math.max(0.04, base + (i === N - 1 ? 0.03 : ruido)));
-      pts.push([t * W, H - v * H]);
+    let linea = null, area = null, ultimo = null, ancho = 0;
+
+    function alturas() {
+      const N = 15;
+      let r = 20260911;
+      const paso = () => { r = (r * 1103515245 + 12345) % 2147483648; return r / 2147483648; };
+      const v = [];
+      for (let i = 0; i < N; i++) {
+        const t = i / (N - 1);
+        const base = 0.10 + Math.pow(t, 1.35) * 0.82;
+        const ruido = (paso() - 0.5) * 0.055 * (1 - t * 0.5);
+        v.push(Math.min(0.98, Math.max(0.04, base + (i === N - 1 ? 0.03 : ruido))));
+      }
+      return v;
+    }
+    const V = alturas();
+
+    function construir() {
+      const r = caja.getBoundingClientRect();
+      const W = Math.round(r.width), H = Math.round(r.height);
+      if (!W || !H) return false;
+
+      const pts = V.map((v, i) => [ (i / (V.length - 1)) * W, H - v * H ]);
+      const en = i => pts[Math.min(pts.length - 1, Math.max(0, i))];
+      let d = 'M' + pts[0][0].toFixed(1) + ',' + pts[0][1].toFixed(1);
+      for (let i = 0; i < pts.length - 1; i++) {
+        const p0 = en(i - 1), p1 = en(i), p2 = en(i + 1), p3 = en(i + 2);
+        const c1 = [p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6];
+        const c2 = [p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6];
+        d += ' C' + c1[0].toFixed(1) + ',' + c1[1].toFixed(1) +
+             ' ' + c2[0].toFixed(1) + ',' + c2[1].toFixed(1) +
+             ' ' + p2[0].toFixed(1) + ',' + p2[1].toFixed(1);
+      }
+
+      $$('svg', caja).forEach(n => n.remove());
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+      svg.setAttribute('aria-hidden', 'true');
+      svg.innerHTML =
+        '<path class="statline__area" d="' + d + ' L' + W + ',' + H + ' L0,' + H + ' Z"></path>' +
+        '<path class="statline__l" d="' + d + '"></path>';
+      if (luz.parentNode === caja) caja.insertBefore(svg, luz); else caja.appendChild(svg);
+      linea = $('.statline__l', caja);
+      area  = $('.statline__area', caja);
+      ancho = W;
+      return true;
     }
 
-    /* Catmull-Rom pasada a bezier: la curva atraviesa todos los puntos sin
-       los escalones que deja poner los controles en la mitad del tramo. */
-    const en = i => pts[Math.min(pts.length - 1, Math.max(0, i))];
-    let d = 'M' + pts[0][0].toFixed(2) + ',' + pts[0][1].toFixed(2);
-    for (let i = 0; i < pts.length - 1; i++) {
-      const p0 = en(i - 1), p1 = en(i), p2 = en(i + 1), p3 = en(i + 2);
-      const c1 = [p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6];
-      const c2 = [p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6];
-      d += ' C' + c1[0].toFixed(2) + ',' + c1[1].toFixed(2) +
-           ' ' + c2[0].toFixed(2) + ',' + c2[1].toFixed(2) +
-           ' ' + p2[0].toFixed(2) + ',' + p2[1].toFixed(2);
+    if (!construir()) return;
+    caja.appendChild(luz);
+
+    function pintar(e) {
+      const largo = linea.getTotalLength();
+      linea.style.strokeDasharray = largo;
+      linea.style.strokeDashoffset = largo * (1 - e);
+      ultimo = linea.getPointAtLength(largo * e);
+      luz.style.left = ultimo.x + 'px';
+      luz.style.top  = ultimo.y + 'px';
     }
 
-    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
-    svg.setAttribute('preserveAspectRatio', 'none');
-    svg.setAttribute('aria-hidden', 'true');
-    svg.innerHTML =
-      '<path class="statline__area" d="' + d + ' L' + W + ',' + H + ' L0,' + H + ' Z"></path>' +
-      '<path class="statline__l" d="' + d + '" pathLength="1"></path>';
-    caja.appendChild(svg);
+    let listo = false;
+    function correr() {
+      listo = true;
+      caja.classList.add('is-on');
+      luz.classList.add('is-on');
+      if (REDUCED) { pintar(1); luz.classList.add('is-fin'); return; }
+      const dur = 2200, t0 = performance.now();
+      (function cuadro(ahora) {
+        const p = Math.min(1, (ahora - t0) / dur);
+        pintar(1 - Math.pow(1 - p, 3));
+        if (p < 1) requestAnimationFrame(cuadro);
+        else luz.classList.add('is-fin');
+      })(performance.now());
+    }
 
-    if (REDUCED) { caja.classList.add('is-on'); return; }
     const io = new IntersectionObserver(es => {
-      es.forEach(e => { if (e.isIntersecting) { caja.classList.add('is-on'); io.disconnect(); } });
+      es.forEach(e => { if (e.isIntersecting) { correr(); io.disconnect(); } });
     }, { threshold: 0.3 });
     io.observe(caja);
+
+    let tmr;
+    window.addEventListener('resize', () => {
+      clearTimeout(tmr);
+      tmr = setTimeout(() => {
+        if (Math.abs(caja.getBoundingClientRect().width - ancho) < 2) return;
+        if (construir() && listo) pintar(1);
+      }, 160);
+    }, { passive: true });
   }
 
   function runCounter(el) {
