@@ -73,7 +73,7 @@ const I18N = {
     /* --- Cifras --- */
     "stats.kicker": "Resultados",
     "stats.title": "Números concretos, con plazo y cuenta.",
-    "stats.g1": "Cuenta gestionada · Instagram",
+    "stats.g1": "SYGSA · Instagram",
     "stats.g1sub": "Panel profesional de Meta · 15 feb a 16 mar de 2026",
     "stats.g2": "Mis números",
     "stats.g2sub": "Cuenta propia y trayectoria",
@@ -419,7 +419,7 @@ const I18N = {
 
     "stats.kicker": "Results",
     "stats.title": "Concrete numbers, with a window and a count.",
-    "stats.g1": "Managed account · Instagram",
+    "stats.g1": "SYGSA · Instagram",
     "stats.g1sub": "Meta professional dashboard · 15 Feb to 16 Mar 2026",
     "stats.g2": "My own numbers",
     "stats.g2sub": "Own account and track record",
