@@ -121,6 +121,14 @@ Lo usa el video de lanzamiento de Los Chihuahuas, montado en un marco de teléfo
 
 Sirve para videos que no pertenecen al reel de clientes. El reproductor asume vertical.
 
+### El botón de volver
+Cuando alguien toca un caso, un cliente o un botón dentro de un dossier, la
+página salta a otro lugar. Ahí aparece abajo a la izquierda un botón que dice
+"Volver a" y el nombre de donde venía, y lo devuelve a ese punto exacto.
+
+Se arma solo: cada salto guarda de qué elemento salió. Si la persona vuelve
+scrolleando por su cuenta, el botón se va sin que haga falta tocarlo.
+
 ### Cómo se conectan casos, clientes y trabajos
 Cada caso y cada cliente puede llevar a su trabajo, en vez de repetir las piezas.
 En `assets/js/main.js`, la lista `CLIENTS` acepta un campo `go`:

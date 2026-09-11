@@ -20,6 +20,7 @@ const I18N = {
     "nav.work": "Trabajos",
     "nav.reel": "Reel",
     "nav.exp": "Experiencia",
+    "nav.volverA": "Volver a",
     "nav.services": "Servicios",
     "nav.contact": "Contacto",
 
@@ -371,6 +372,7 @@ const I18N = {
     "nav.work": "Work",
     "nav.reel": "Reel",
     "nav.exp": "Experience",
+    "nav.volverA": "Back to",
     "nav.services": "Services",
     "nav.contact": "Contact",
 

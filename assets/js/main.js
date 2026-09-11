@@ -575,7 +575,7 @@
       if (c.go) {
         li.setAttribute('role', 'button');
         li.setAttribute('tabindex', '0');
-        const act = () => goToWork(c.go);
+        const act = () => goToWork(c.go, t('nav.exp'), li);
         li.addEventListener('click', act);
         li.addEventListener('keydown', e => {
           if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); act(); }
@@ -589,7 +589,59 @@
 
   /* Lleva del nombre de una marca a su trabajo: baja al subgrupo
      o abre el documento, según lo que tenga cargado. */
-  function goToWork(go) {
+  /* ==========================================================
+     VUELTA ATRÁS
+     Los botones de casos, clientes y dossiers saltan a otra parte de
+     la página. Antes de saltar se guarda dónde estaba la persona y
+     aparece un botón para volver a ese punto exacto.
+     ========================================================== */
+
+  const volverBtn = $('#volver');
+  let vuelta = null;
+
+  /* Se guarda el elemento del que salió la persona, no un número de scroll:
+     así el regreso funciona igual sin importar qué contenedor scrollea. */
+  function marcarVuelta(etiqueta, origen, restaurar) {
+    vuelta = { origen: origen || null, etiqueta: etiqueta, restaurar: restaurar || null };
+    $('.volver__txt', volverBtn).textContent = t('nav.volverA') + ' ' + etiqueta;
+    volverBtn.hidden = false;
+    /* Se muestra recién cuando el salto terminó, para que no tape el destino */
+    setTimeout(() => volverBtn.classList.add('is-on'), 700);
+  }
+
+  function limpiarVuelta() {
+    vuelta = null;
+    volverBtn.classList.remove('is-on');
+    setTimeout(() => { if (!vuelta) volverBtn.hidden = true; }, 300);
+  }
+
+  if (volverBtn) {
+    volverBtn.addEventListener('click', () => {
+      if (!vuelta) return;
+      const origen = vuelta.origen;
+      const restaurar = vuelta.restaurar;
+      limpiarVuelta();
+      if (restaurar) { restaurar(); return; }
+      if (!origen) return;
+      /* Se vuelve al elemento, no a una coordenada: si al saltar se abrió
+         un capítulo, la página creció y el número viejo ya no serviría. */
+      origen.scrollIntoView({ block: 'center', behavior: REDUCED ? 'auto' : 'smooth' });
+    });
+
+    /* Si la persona ya volvió sola al punto de partida, el botón sobra.
+       Recién cuenta después de que el origen se fue de pantalla: si no,
+       un salto corto lo escondería apenas aparece. */
+    window.addEventListener('scroll', () => {
+      if (!vuelta || vuelta.restaurar || !vuelta.origen) return;
+      const r = vuelta.origen.getBoundingClientRect();
+      const aLaVista = r.bottom > 0 && r.top < window.innerHeight;
+      if (!aLaVista) { vuelta.seFue = true; return; }
+      if (vuelta.seFue) limpiarVuelta();
+    }, { passive: true });
+  }
+
+  function goToWork(go, desde, origen) {
+    if (desde) marcarVuelta(desde, origen);
     if (go.doc) { openDoc(go.doc[0], go.doc[1], go.doc[2]); return; }
     if (go.video) {
       const v = REEL.find(x => x.id === go.video);
@@ -730,7 +782,20 @@
         if (l.label) a.textContent = t(l.label);
         a.setAttribute('aria-label', t(l.label || 'docs.linkLabel'));
         a.style.cssText = 'left:' + l.x + '%;top:' + l.y + '%;width:' + l.w + '%;height:' + l.h + '%';
-        a.addEventListener('click', e => { e.preventDefault(); goToReel(l.reel); });
+        a.addEventListener('click', e => {
+          e.preventDefault();
+          const pagina = i;
+          goToReel(l.reel, {
+            etiqueta: t(titleKey),
+            restaurar: () => {
+              openDoc(slug, pages, titleKey);
+              setTimeout(() => {
+                const f = $$('.docpage', docPages)[pagina - 1];
+                if (f) f.scrollIntoView({ block: 'start', behavior: 'auto' });
+              }, 120);
+            }
+          });
+        });
         fig.appendChild(a);
       });
 
@@ -751,7 +816,8 @@
 
   /* Cierra el dossier y baja al grupo del reel que corresponde, en
      vez de mandar a la persona fuera del sitio. */
-  function goToReel(cat) {
+  function goToReel(cat, volverAlDoc) {
+    if (volverAlDoc) marcarVuelta(volverAlDoc.etiqueta, null, volverAlDoc.restaurar);
     closeDoc();
     setTimeout(() => {
       const h = $('.wgroup[data-g="' + cat + '"]');
@@ -782,9 +848,9 @@
     btn.addEventListener('click', () => {
       if (btn.dataset.goDoc) {
         const p = btn.dataset.goDoc.split(',');
-        goToWork({ doc: [p[0], +p[1], p[2]] });
+        goToWork({ doc: [p[0], +p[1], p[2]] }, t('nav.exp'), btn);
       } else {
-        goToWork({ grupo: btn.dataset.goGroup });
+        goToWork({ grupo: btn.dataset.goGroup }, t('nav.exp'), btn);
       }
     });
   });

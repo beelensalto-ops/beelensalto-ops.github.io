@@ -870,6 +870,30 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .doc__dl:hover { color: var(--c-text); background: var(--c-surface-hi); }
 
 /* Visor: las páginas se leen dentro del sitio */
+/* Vuelta atrás: aparece abajo a la izquierda después de un salto y
+   devuelve al punto exacto de donde salió la persona. */
+.volver {
+  position: fixed; left: clamp(1rem, 3vw, 2rem); bottom: clamp(1rem, 3vw, 2rem);
+  z-index: 60;
+  display: inline-flex; align-items: center; gap: 0.55rem;
+  padding: 0.7rem 1.15rem;
+  border: 1px solid var(--c-lila); border-radius: var(--r-pill);
+  background: var(--c-surface); color: var(--c-text);
+  font-family: var(--f-mono); font-size: 0.68rem;
+  letter-spacing: var(--tr-label); text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+  opacity: 0; transform: translateY(12px);
+  transition: opacity var(--d-mid) var(--e-out), transform var(--d-mid) var(--e-out),
+              background var(--d-fast), color var(--d-fast);
+}
+.volver.is-on { opacity: 1; transform: none; }
+.volver:hover { background: var(--c-lila); color: var(--c-on-lila); }
+.volver__flecha { font-size: 0.9rem; line-height: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .volver { transition: opacity 0.01ms; transform: none; }
+}
+
 .docmodal {
   position: fixed; inset: 0; z-index: 9600;
   background: color-mix(in srgb, var(--c-bg) 97%, transparent);
