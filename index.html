@@ -26,8 +26,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="assets/css/tokens.css?v=15">
-<link rel="stylesheet" href="assets/css/styles.css?v=15">
+<link rel="stylesheet" href="assets/css/tokens.css?v=20">
+<link rel="stylesheet" href="assets/css/styles.css?v=20">
 </head>
 <body>
 
@@ -141,6 +141,9 @@
   <div class="wrap">
     <p class="kicker kicker--rule reveal" data-i18n="stats.kicker">Resultados</p>
     <h2 class="h2 h2--wide reveal" data-delay="1" data-i18n="stats.title"></h2>
+
+    <!-- Curva de crecimiento: gesto gráfico, sin ejes ni valores -->
+    <div class="statline reveal" data-delay="2" aria-hidden="true"></div>
 
     <!-- Cada bloque dice de qué cuenta salen sus números -->
     <div class="statgroup reveal">
@@ -369,21 +372,21 @@
            Los PDF originales pesan más de 13 MB cada uno. -->
       <div class="chapterbody">
         <div class="docs">
-          <div class="doc reveal doc--nodl" data-delay="1">
+          <div class="doc reveal" data-delay="1">
             <button type="button" class="doc__main" data-doc="manual-kausa" data-pages="19" data-title="man.kausa">
               <span class="doc__n">01</span>
               <span class="doc__body"><span class="doc__t" data-i18n="man.kausa"></span><span class="doc__s" data-i18n="man.kausaSub"></span></span>
               <span class="doc__go" data-i18n="docs.open">Ver</span>
             </button>
           </div>
-          <div class="doc reveal doc--nodl" data-delay="2">
+          <div class="doc reveal" data-delay="2">
             <button type="button" class="doc__main" data-doc="manual-schalke" data-pages="20" data-title="man.schalke">
               <span class="doc__n">02</span>
               <span class="doc__body"><span class="doc__t" data-i18n="man.schalke"></span><span class="doc__s" data-i18n="man.schalkeSub"></span></span>
               <span class="doc__go" data-i18n="docs.open">Ver</span>
             </button>
           </div>
-          <div class="doc reveal doc--nodl" data-delay="3">
+          <div class="doc reveal" data-delay="3">
             <button type="button" class="doc__main" data-doc="identidad-meme" data-pages="5" data-title="man.meme">
               <span class="doc__n">03</span>
               <span class="doc__body"><span class="doc__t" data-i18n="man.meme"></span><span class="doc__s" data-i18n="man.memeSub"></span></span>
@@ -407,14 +410,14 @@
       <!-- El calendario mensual va antes de las piezas: primero cómo se
            planifica el mes, después qué salió publicado. -->
       <div class="docs docs--inchapter reveal">
-        <div class="doc doc--nodl">
+        <div class="doc">
           <button type="button" class="doc__main" data-doc="calendario-galaktica" data-pages="4" data-title="man.calGal">
             <span class="doc__n">01</span>
             <span class="doc__body"><span class="doc__t" data-i18n="man.calGal"></span><span class="doc__s" data-i18n="man.calGalSub"></span></span>
             <span class="doc__go" data-i18n="docs.open">Ver</span>
           </button>
         </div>
-        <div class="doc doc--nodl">
+        <div class="doc">
           <button type="button" class="doc__main" data-doc="calendario-schalke" data-pages="7" data-title="man.calSch">
             <span class="doc__n">02</span>
             <span class="doc__body"><span class="doc__t" data-i18n="man.calSch"></span><span class="doc__s" data-i18n="man.calSchSub"></span></span>
@@ -453,7 +456,6 @@
             <span class="doc__body"><span class="doc__t" data-i18n="man.merch"></span><span class="doc__s" data-i18n="man.merchSub"></span></span>
             <span class="doc__go" data-i18n="docs.open">Ver</span>
           </button>
-          <a class="doc__dl" href="assets/docs/merch-sygsa.pdf" download data-i18n="docs.dl">PDF</a>
         </div>
       </div>
       <div class="chapterbody" data-chapter="phys"></div>
@@ -490,7 +492,6 @@
           <span class="doc__body"><span class="doc__t" data-i18n="docs.2"></span><span class="doc__s" data-i18n="docs.2sub"></span></span>
           <span class="doc__go" data-i18n="docs.open">Ver</span>
         </button>
-        <a class="doc__dl" href="assets/docs/gestion-estrategia.pdf" download data-i18n="docs.dl">PDF</a>
       </div>
       <div class="doc reveal" data-delay="2">
         <button type="button" class="doc__main" data-doc="diseno-contenido-rrss" data-pages="10" data-title="docs.1">
@@ -498,7 +499,6 @@
           <span class="doc__body"><span class="doc__t" data-i18n="docs.1"></span><span class="doc__s" data-i18n="docs.1sub"></span></span>
           <span class="doc__go" data-i18n="docs.open">Ver</span>
         </button>
-        <a class="doc__dl" href="assets/docs/diseno-contenido-rrss.pdf" download data-i18n="docs.dl">PDF</a>
       </div>
       <div class="doc reveal" data-delay="3">
         <button type="button" class="doc__main" data-doc="ugc" data-pages="7" data-title="docs.3">
@@ -506,7 +506,6 @@
           <span class="doc__body"><span class="doc__t" data-i18n="docs.3"></span><span class="doc__s" data-i18n="docs.3sub"></span></span>
           <span class="doc__go" data-i18n="docs.open">Ver</span>
         </button>
-        <a class="doc__dl" href="assets/docs/ugc.pdf" download data-i18n="docs.dl">PDF</a>
       </div>
     </div>
   </div>
@@ -686,7 +685,6 @@
   <header class="docmodal__bar">
     <p class="docmodal__t" id="docTitle"></p>
     <div class="docmodal__actions">
-      <a class="docmodal__dl" id="docDl" href="#" download data-i18n="docs.dl">PDF</a>
       <button type="button" class="docmodal__close" id="docClose" aria-label="Cerrar">✕</button>
     </div>
   </header>
@@ -698,7 +696,7 @@
   <video id="vmodalVideo" controls playsinline preload="none"></video>
 </div>
 
-<script src="assets/js/i18n.js?v=15"></script>
-<script src="assets/js/main.js?v=15"></script>
+<script src="assets/js/i18n.js?v=20"></script>
+<script src="assets/js/main.js?v=20"></script>
 </body>
 </html>

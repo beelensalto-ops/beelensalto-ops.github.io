@@ -802,12 +802,7 @@
       docPages.appendChild(fig);
     }
     $('#docTitle').textContent = t(titleKey);
-    /* Los manuales de marca se leen en el visor y no se descargan:
-       el PDF original pesa más de 13 MB. */
-    const dl = $('#docDl');
-    const row = $('.doc__main[data-doc="' + slug + '"]').closest('.doc');
-    dl.hidden = row.classList.contains('doc--nodl');
-    dl.href = 'assets/docs/' + slug + '.pdf';
+    /* Los dossiers se leen acá dentro y no se descargan */
     docPages.scrollTop = 0;
     docmodal.classList.add('is-open');
     docmodal.setAttribute('aria-hidden', 'false');
@@ -938,34 +933,53 @@
     return lang === 'en' ? n.toLocaleString('en-US') : n.toLocaleString('es-AR');
   }
 
-  /* Debajo de cada cifra va una curva que sube y se dibuja sola, al mismo
-     tiempo que corre el contador. La forma sale del propio número, así cada
-     tarjeta tiene su curva y siempre es la misma. */
-  function dibujarGrafico(stat, semilla) {
-    if ($('.stat__graf', stat)) return;
-    const N = 11;
-    let r = (semilla % 9973) + 7;
+  /* Una sola curva, ancha, debajo del título de Resultados. Se dibuja sola
+     al entrar en pantalla. No lleva ejes ni valores: es un gesto gráfico de
+     crecimiento, no un gráfico de datos. */
+  function dibujarCurva() {
+    const caja = $('.statline');
+    if (!caja || $('svg', caja)) return;
+
+    const N = 15, W = 100, H = 26;
+    let r = 20260911;
     const paso = () => { r = (r * 1103515245 + 12345) % 2147483648; return r / 2147483648; };
 
-    const ys = [];
+    const pts = [];
     for (let i = 0; i < N; i++) {
-      const base = 0.16 + (i / (N - 1)) * 0.74;      // la tendencia siempre sube
-      const ruido = (paso() - 0.5) * 0.16;            // pero no en línea recta
-      ys.push(Math.min(0.97, Math.max(0.06, base + (i === N - 1 ? 0.04 : ruido))));
+      const t = i / (N - 1);
+      const base = 0.10 + Math.pow(t, 1.35) * 0.82;   // sube, y más fuerte al final
+      const ruido = (paso() - 0.5) * 0.055 * (1 - t * 0.5);
+      const v = Math.min(0.98, Math.max(0.04, base + (i === N - 1 ? 0.03 : ruido)));
+      pts.push([t * W, H - v * H]);
     }
-    const pts = ys.map((v, i) => [ (i / (N - 1)) * 100, 30 - v * 30 ]);
-    const linea = pts.map((p, i) => (i ? 'L' : 'M') + p[0].toFixed(1) + ',' + p[1].toFixed(1)).join(' ');
-    const area  = linea + ' L100,30 L0,30 Z';
+
+    /* Catmull-Rom pasada a bezier: la curva atraviesa todos los puntos sin
+       los escalones que deja poner los controles en la mitad del tramo. */
+    const en = i => pts[Math.min(pts.length - 1, Math.max(0, i))];
+    let d = 'M' + pts[0][0].toFixed(2) + ',' + pts[0][1].toFixed(2);
+    for (let i = 0; i < pts.length - 1; i++) {
+      const p0 = en(i - 1), p1 = en(i), p2 = en(i + 1), p3 = en(i + 2);
+      const c1 = [p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6];
+      const c2 = [p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6];
+      d += ' C' + c1[0].toFixed(2) + ',' + c1[1].toFixed(2) +
+           ' ' + c2[0].toFixed(2) + ',' + c2[1].toFixed(2) +
+           ' ' + p2[0].toFixed(2) + ',' + p2[1].toFixed(2);
+    }
 
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    svg.setAttribute('class', 'stat__graf');
-    svg.setAttribute('viewBox', '0 0 100 30');
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
     svg.setAttribute('preserveAspectRatio', 'none');
     svg.setAttribute('aria-hidden', 'true');
     svg.innerHTML =
-      '<path class="stat__area" d="' + area + '"></path>' +
-      '<path class="stat__linea" d="' + linea + '" pathLength="1"></path>';
-    stat.insertBefore(svg, $('.stat__lab', stat));
+      '<path class="statline__area" d="' + d + ' L' + W + ',' + H + ' L0,' + H + ' Z"></path>' +
+      '<path class="statline__l" d="' + d + '" pathLength="1"></path>';
+    caja.appendChild(svg);
+
+    if (REDUCED) { caja.classList.add('is-on'); return; }
+    const io = new IntersectionObserver(es => {
+      es.forEach(e => { if (e.isIntersecting) { caja.classList.add('is-on'); io.disconnect(); } });
+    }, { threshold: 0.3 });
+    io.observe(caja);
   }
 
   function runCounter(el) {
@@ -987,17 +1001,12 @@
   }
 
   function initCounters() {
-    $$('[data-count]').forEach(el => {
-      const stat = el.closest('.stat');
-      if (stat && $('.stat__lab', stat)) dibujarGrafico(stat, +el.dataset.count || 1);
-    });
+    dibujarCurva();
 
     const io = new IntersectionObserver(entries => {
       entries.forEach(en => {
         if (!en.isIntersecting) return;
         runCounter(en.target);
-        const stat = en.target.closest('.stat');
-        if (stat) stat.classList.add('is-graf');
         io.unobserve(en.target);
       });
     }, { threshold: 0.4 });
