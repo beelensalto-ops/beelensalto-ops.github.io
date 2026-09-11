@@ -73,7 +73,7 @@ const I18N = {
     /* --- Cifras --- */
     "stats.kicker": "Resultados",
     "stats.title": "Números concretos, con plazo y cuenta.",
-    "stats.g1": "SYGSA · Instagram",
+    "stats.g1": "Cuenta gestionada · Instagram",
     "stats.g1sub": "Panel profesional de Meta · 15 feb a 16 mar de 2026",
     "stats.g2": "Mis números",
     "stats.g2sub": "Cuenta propia y trayectoria",
@@ -204,7 +204,7 @@ const I18N = {
     "ch.social.t": "Cada cliente, su propia identidad",
     "ch.social.d": "Placas de feed, carruseles, historias y anuncios. Ninguna sale de una plantilla: cada una nace del sistema visual de su marca. Por eso están agrupadas por cliente, y se nota que ninguna habla igual que la otra.",
     "ch.data.t": "Algunos datos y performance de las cuentas gestionadas",
-    "ch.data.d": "Leer el panel es parte del trabajo. Miro qué formato rindió, qué contenido trajo seguidores y qué conviene dejar de hacer el mes que viene. Las capturas son de la cuenta de SYGSA.",
+    "ch.data.d": "Leer el panel es parte del trabajo. Miro qué formato rindió, qué contenido trajo seguidores y qué conviene dejar de hacer el mes que viene. Las capturas son de una cuenta que gestioné; el nombre queda reservado.",
 
     /* Subgrupos dentro de cada capítulo */
     "g.kausa": "Kausa",
@@ -419,7 +419,7 @@ const I18N = {
 
     "stats.kicker": "Results",
     "stats.title": "Concrete numbers, with a window and a count.",
-    "stats.g1": "SYGSA · Instagram",
+    "stats.g1": "Managed account · Instagram",
     "stats.g1sub": "Meta professional dashboard · 15 Feb to 16 Mar 2026",
     "stats.g2": "My own numbers",
     "stats.g2sub": "Own account and track record",
@@ -545,7 +545,7 @@ const I18N = {
     "ch.social.t": "Every client, their own identity",
     "ch.social.d": "Feed posts, carousels, stories and ad creatives. None comes from a template: each one grows out of its brand visual system. That is why they are grouped by client, and you can tell no two speak alike.",
     "ch.data.t": "Some data and performance from the accounts I managed",
-    "ch.data.d": "Reading the dashboard is part of the job. I look at which format performed, what content brought followers, and what is worth dropping next month. These screenshots are from the SYGSA account.",
+    "ch.data.d": "Reading the dashboard is part of the job. I look at which format performed, what content brought followers, and what is worth dropping next month. These screenshots are from an account I managed; the name stays private.",
 
     "g.kausa": "Kausa",
     "g.schalke": "Schalke",
