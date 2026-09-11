@@ -938,6 +938,36 @@
     return lang === 'en' ? n.toLocaleString('en-US') : n.toLocaleString('es-AR');
   }
 
+  /* Debajo de cada cifra va una curva que sube y se dibuja sola, al mismo
+     tiempo que corre el contador. La forma sale del propio número, así cada
+     tarjeta tiene su curva y siempre es la misma. */
+  function dibujarGrafico(stat, semilla) {
+    if ($('.stat__graf', stat)) return;
+    const N = 11;
+    let r = (semilla % 9973) + 7;
+    const paso = () => { r = (r * 1103515245 + 12345) % 2147483648; return r / 2147483648; };
+
+    const ys = [];
+    for (let i = 0; i < N; i++) {
+      const base = 0.16 + (i / (N - 1)) * 0.74;      // la tendencia siempre sube
+      const ruido = (paso() - 0.5) * 0.16;            // pero no en línea recta
+      ys.push(Math.min(0.97, Math.max(0.06, base + (i === N - 1 ? 0.04 : ruido))));
+    }
+    const pts = ys.map((v, i) => [ (i / (N - 1)) * 100, 30 - v * 30 ]);
+    const linea = pts.map((p, i) => (i ? 'L' : 'M') + p[0].toFixed(1) + ',' + p[1].toFixed(1)).join(' ');
+    const area  = linea + ' L100,30 L0,30 Z';
+
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('class', 'stat__graf');
+    svg.setAttribute('viewBox', '0 0 100 30');
+    svg.setAttribute('preserveAspectRatio', 'none');
+    svg.setAttribute('aria-hidden', 'true');
+    svg.innerHTML =
+      '<path class="stat__area" d="' + area + '"></path>' +
+      '<path class="stat__linea" d="' + linea + '" pathLength="1"></path>';
+    stat.insertBefore(svg, $('.stat__lab', stat));
+  }
+
   function runCounter(el) {
     const target = +el.dataset.count;
     const pre = el.dataset.prefix || '';
@@ -957,9 +987,18 @@
   }
 
   function initCounters() {
+    $$('[data-count]').forEach(el => {
+      const stat = el.closest('.stat');
+      if (stat && $('.stat__lab', stat)) dibujarGrafico(stat, +el.dataset.count || 1);
+    });
+
     const io = new IntersectionObserver(entries => {
       entries.forEach(en => {
-        if (en.isIntersecting) { runCounter(en.target); io.unobserve(en.target); }
+        if (!en.isIntersecting) return;
+        runCounter(en.target);
+        const stat = en.target.closest('.stat');
+        if (stat) stat.classList.add('is-graf');
+        io.unobserve(en.target);
       });
     }, { threshold: 0.4 });
     $$('[data-count]').forEach(el => io.observe(el));

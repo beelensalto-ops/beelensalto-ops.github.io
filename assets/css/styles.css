@@ -483,6 +483,31 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   color: var(--c-data); margin: 0 0 0.6rem;
   font-variant-numeric: tabular-nums;
 }
+/* La curva que acompaña a cada cifra: se dibuja de izquierda a derecha
+   mientras corre el contador, y el relleno aparece detrás. */
+.stat__graf {
+  display: block; width: 100%; height: clamp(34px, 5vw, 48px);
+  margin: 0 0 0.8rem;
+}
+.stat__area {
+  fill: var(--c-data); opacity: 0;
+  transition: opacity 900ms var(--e-out) 500ms;
+}
+.stat__linea {
+  fill: none; stroke: var(--c-data); stroke-width: 2;
+  stroke-linecap: round; stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 1; stroke-dashoffset: 1;
+  transition: stroke-dashoffset 1900ms cubic-bezier(0.22, 0.75, 0.2, 1);
+}
+.stat.is-graf .stat__linea { stroke-dashoffset: 0; }
+.stat.is-graf .stat__area  { opacity: 0.13; }
+
+@media (prefers-reduced-motion: reduce) {
+  .stat__linea { transition: none; stroke-dashoffset: 0; }
+  .stat__area  { transition: none; opacity: 0.13; }
+}
+
 .stat__lab {
   font-family: var(--f-mono); font-size: var(--t-xs);
   letter-spacing: 0.14em; text-transform: uppercase;
@@ -595,13 +620,33 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   display: grid; gap: 0.25rem;
   transition: background var(--d-mid), border-color var(--d-mid), transform var(--d-fast) var(--e-out);
 }
+/* La tarjeta que lleva a algún lado se rellena de lila al pasar por arriba:
+   el manual admite texto en tinta sobre lila, así que se lee sin esfuerzo.
+   La que no tiene material solo se aclara, para que la diferencia se note. */
 .client:hover { background: var(--c-surface); border-color: var(--c-lila); transform: translateY(-3px); }
-.client__name { font-weight: var(--w-med); letter-spacing: var(--tr-sub); }
+.client--go:hover,
+.client--go:focus-visible,
+.client--go:active {
+  background: var(--c-lila); border-color: var(--c-lila);
+  transform: translateY(-3px);
+}
+.client--go:active { transform: translateY(-1px); }
+.client__name {
+  font-weight: var(--w-med); letter-spacing: var(--tr-sub);
+  transition: color var(--d-mid);
+}
 .client__s {
   font-family: var(--f-mono); font-size: 0.62rem;
   letter-spacing: var(--tr-label); text-transform: uppercase;
   color: var(--c-text-faint);
+  transition: color var(--d-mid);
 }
+.client--go:hover .client__name,
+.client--go:focus-visible .client__name { color: var(--c-on-lila); }
+.client--go:hover .client__s,
+.client--go:focus-visible .client__s { color: var(--c-on-lila); opacity: 0.72; }
+.client--go:hover .client__go,
+.client--go:focus-visible .client__go { color: var(--c-on-lila); transform: translateX(3px); }
 
 /* ---------------- FILTROS Y GALERÍA ----------------
    Píldoras: la activa se rellena en naranja con texto negro. */
@@ -1354,7 +1399,9 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 
 @media (max-width: 760px) {
   .own__grid { justify-items: center; }
-  .tablet { margin-inline: auto; }
+  /* Apilados, la tablet y el teléfono van centrados. Antes se centraba
+     solo la tablet y el teléfono quedaba corrido a la izquierda. */
+  .own__devices { width: 100%; justify-content: center; }
 }
 
 /* ---------------- PROYECTO PROPIO, VERSIÓN LARGA ---------------- */
