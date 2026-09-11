@@ -22,7 +22,6 @@ const I18N = {
     "nav.exp": "Experiencia",
     "nav.services": "Servicios",
     "nav.contact": "Contacto",
-    "nav.cv": "Descargar CV",
 
     /* --- Preloader --- */
     "load.hi": "Lic. Marketing",
@@ -356,9 +355,7 @@ const I18N = {
     "cta.title2": "tu marca.",
     "cta.lead": "Tomo proyectos freelance y posiciones remotas o híbridas. Desde 2019 trabajo con equipos de Argentina, España, Venezuela y Estados Unidos: coordinar entre husos horarios ya es parte de mi rutina.",
     "cta.email": "Escribime",
-    "cta.wa": "WhatsApp",
     "cta.li": "LinkedIn",
-    "cta.cv": "Descargar CV",
     "cta.locLabel": "Ubicación",
     "cta.locValue": "La Plata, Argentina",
 
@@ -375,7 +372,6 @@ const I18N = {
     "nav.exp": "Experience",
     "nav.services": "Services",
     "nav.contact": "Contact",
-    "nav.cv": "Download CV",
 
     "load.hi": "Marketing Degree",
 
@@ -692,9 +688,7 @@ const I18N = {
     "cta.title2": "brand needs.",
     "cta.lead": "I take freelance projects and remote or hybrid roles. Since 2019 I've worked with teams in Argentina, Spain, Venezuela and the United States: coordinating across time zones is already part of my routine.",
     "cta.email": "Email me",
-    "cta.wa": "WhatsApp",
     "cta.li": "LinkedIn",
-    "cta.cv": "Download CV",
     "cta.locLabel": "Location",
     "cta.locValue": "La Plata, Argentina",
 
