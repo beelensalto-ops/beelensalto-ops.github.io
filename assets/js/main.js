@@ -695,11 +695,14 @@
   /* Los botones que el PDF traía como enlaces se vuelven a colocar
      encima de la imagen de la página. Las medidas son porcentajes
      de la página, así funcionan en cualquier tamaño de pantalla. */
+  /* El dossier de UGC se imprimió con botones que decían "Reels en Drive".
+     Acá esos botones se tapan con uno propio que baja al reel del sitio,
+     así nadie sale del portafolio ni cae en una carpeta ajena. */
   const DOC_LINKS = {
     ugc: [
-      { page: 4, reel: 'ugc', x: 5.31, y: 25.28, w: 17.34, h: 2.92 },
-      { page: 5, reel: 'ugc', x: 5.31, y: 29.09, w: 17.34, h: 2.92 },
-      { page: 6, reel: 'ia',  x: 5.31, y: 32.89, w: 17.34, h: 2.92 }
+      { page: 4, reel: 'ugc', x: 3.8, y: 25.1, w: 21.2, h: 6.3, label: 'docs.verReels' },
+      { page: 5, reel: 'ugc', x: 3.8, y: 29.0, w: 21.2, h: 6.3, label: 'docs.verReels' },
+      { page: 6, reel: 'ia',  x: 4.2, y: 32.7, w: 21.2, h: 6.5, label: 'docs.verReels' }
     ]
   };
 
@@ -722,9 +725,10 @@
 
       links.filter(l => l.page === i).forEach(l => {
         const a = document.createElement('a');
-        a.className = 'docpage__link';
+        a.className = 'docpage__link' + (l.label ? ' docpage__link--pill' : '');
         a.href = '#reel';
-        a.setAttribute('aria-label', t('docs.linkLabel'));
+        if (l.label) a.textContent = t(l.label);
+        a.setAttribute('aria-label', t(l.label || 'docs.linkLabel'));
         a.style.cssText = 'left:' + l.x + '%;top:' + l.y + '%;width:' + l.w + '%;height:' + l.h + '%';
         a.addEventListener('click', e => { e.preventDefault(); goToReel(l.reel); });
         fig.appendChild(a);
@@ -752,6 +756,9 @@
     setTimeout(() => {
       const h = $('.wgroup[data-g="' + cat + '"]');
       if (!h) return;
+      /* El capítulo de video arranca plegado: sin abrirlo no hay adónde bajar */
+      const ch = h.closest('.chapter');
+      if (ch) openChapter(ch);
       const y = h.getBoundingClientRect().top + window.scrollY - 90;
       window.scrollTo({ top: y, behavior: REDUCED ? 'auto' : 'smooth' });
     }, 220);

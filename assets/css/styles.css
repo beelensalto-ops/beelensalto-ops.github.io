@@ -912,6 +912,20 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .docpage { position: relative; margin: 0; width: min(100%, 860px); }
 .docpage img { width: 100%; height: auto; display: block; }
 /* Botón recuperado del PDF: invisible hasta que se lo apunta */
+/* Los botones impresos del dossier se tapan con uno propio. El tamaño de
+   letra sigue al ancho de la página para que escale con el visor. */
+.docpage { container-type: inline-size; }
+.docpage__link.docpage__link--pill {
+  display: grid; place-items: center;
+  background: #EBD9FF; color: #14213D;
+  font-family: var(--f-sans); font-weight: var(--w-med);
+  font-size: 1.25cqw; letter-spacing: 0;
+  text-decoration: none; white-space: nowrap;
+  box-shadow: 0 0.35cqw 0.7cqw rgba(0, 0, 0, 0.12);
+}
+.docpage__link.docpage__link--pill:hover,
+.docpage__link.docpage__link--pill:focus-visible { background: var(--c-action); color: var(--c-ink); }
+
 .docpage__link {
   position: absolute; display: block;
   /* El botón del PDF es chico: se le garantiza un área mínima
