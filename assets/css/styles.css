@@ -1473,14 +1473,14 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 /* Collage de la sección personal: dos teléfonos torcidos que se pisan.
    El grande lleva el título; el chico, la foto con su papá, se apoya en
    la esquina de abajo a la izquierda. */
-.why__photos { position: relative; padding-bottom: 150px; }
+.why__photos { position: relative; padding-bottom: 180px; }
 .why__photo { margin: 0; }
 /* El epígrafe del grande va arriba: abajo lo tapa el teléfono chico. */
 .why__photo--a { width: 292px; margin-left: auto; display: flex; flex-direction: column-reverse; }
 .why__photo--a figcaption { margin: 0 0 0.9rem; text-align: right; }
 .why__photo--b {
-  position: absolute; left: 0; bottom: 0;
-  width: 208px; z-index: 2;
+  position: absolute; left: -52px; bottom: -28px;
+  width: 194px; z-index: 2;
 }
 .why__photo figcaption {
   margin-top: 0.9rem; font-family: var(--f-mono);
