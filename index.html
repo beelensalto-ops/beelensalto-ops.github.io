@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Belen Salto — Lic. Marketing</title>
+<meta name="description" content="Estrategia, contenido y diseño para marcas que necesitan que sus redes trabajen, no solo se vean bien. Licenciada en Marketing. La Plata, Argentina.">
+<meta name="author" content="Belen Salto">
+<meta property="og:title" content="Belen Salto — Lic. Marketing">
+<meta property="og:description" content="Estrategia, contenido y diseño para marcas que necesitan que sus redes trabajen, no solo se vean bien.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/img/me/belen-01.jpg">
+<meta name="theme-color" content="#0A0A0C">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230A0A0C'/><circle cx='50' cy='50' r='32' fill='none' stroke='%23C2A8FF' stroke-width='3.5'/><text x='45' y='63' font-size='34' font-family='Poppins,Helvetica,sans-serif' font-weight='300' fill='%23F5F3EF' text-anchor='middle'>bs</text><circle cx='69' cy='58' r='5.5' fill='%23F5871F'/></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="aura" aria-hidden="true"><span class="aura__blob aura__blob--a"></span><span class="aura__blob aura__blob--b"></span></div>
+<div class="cursor" aria-hidden="true"><span class="cursor__dot"></span><span class="cursor__ring"></span></div>
+<div class="scrollbar" aria-hidden="true"><span class="scrollbar__fill"></span></div>
+
+<!-- ============ PRELOADER ============ -->
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader__inner">
+    <div class="lap">
+      <div class="lap__lid">
+        <div class="lap__screen">
+          <p class="lap__label" data-i18n="load.hi">Lic. Marketing</p>
+          <p class="lap__sig">Belen <b>Salto</b></p>
+        </div>
+      </div>
+      <div class="lap__base"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <a href="#top" class="nav__logo" data-magnetic>
+    <span class="nav__mark"><span>bs<b>.</b></span></span>
+    <span class="nav__logotext">Belen <b>Salto</b></span>
+  </a>
+
+  <nav class="nav__links" aria-label="Principal">
+    <a href="#cases"    data-i18n="nav.exp">Experiencia</a>
+    <a href="#work"     data-i18n="nav.work">Trabajos</a>
+    <a href="#services" data-i18n="nav.services">Servicios</a>
+    <a href="#about"    data-i18n="nav.about">Sobre mí</a>
+    <a href="#contact"  data-i18n="nav.contact">Contacto</a>
+  </nav>
+
+  <div class="nav__side">
+    <div class="langswitch" role="group" aria-label="Idioma / Language">
+      <button type="button" class="langswitch__btn is-on" data-lang="es">ES</button>
+      <button type="button" class="langswitch__btn" data-lang="en">EN</button>
+      <span class="langswitch__pill" aria-hidden="true"></span>
+    </div>
+    <button type="button" class="iconbtn" id="themeBtn" data-i18n-title="foot.theme" title="Cambiar tema" aria-label="Cambiar tema">
+      <svg viewBox="0 0 24 24" class="ico-sun" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><g><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/></g></svg>
+      <svg viewBox="0 0 24 24" class="ico-moon" aria-hidden="true"><path d="M20 14.5A8.2 8.2 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/></svg>
+    </button>
+    <button type="button" class="burger" id="burger" aria-label="Menú" aria-expanded="false"><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="drawer" id="drawer" aria-hidden="true">
+  <nav class="drawer__nav">
+    <a href="#cases"    data-i18n="nav.exp">Experiencia</a>
+    <a href="#work"     data-i18n="nav.work">Trabajos</a>
+    <a href="#services" data-i18n="nav.services">Servicios</a>
+    <a href="#about"    data-i18n="nav.about">Sobre mí</a>
+    <a href="#contact"  data-i18n="nav.contact">Contacto</a>
+  </nav>
+  <a class="drawer__cv" href="assets/docs/CV-Belen-Salto.pdf" target="_blank" rel="noopener" data-i18n="nav.cv">Descargar CV</a>
+</div>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero__grid">
+    <div class="hero__main">
+      <p class="kicker reveal" data-i18n="hero.role">Lic. Marketing</p>
+      <h1 class="hero__title">
+        <span class="line"><span class="split" data-i18n="hero.line1">Estrategia, contenido</span></span>
+        <span class="line"><span class="split" data-i18n="hero.line2">y diseño para que</span></span>
+        <span class="line"><span class="split split--em" data-i18n="hero.line3">tus redes trabajen.</span></span>
+      </h1>
+      <p class="hero__lead reveal" data-delay="1" data-i18n="hero.lead"></p>
+      <div class="hero__cta reveal" data-delay="2">
+        <a href="#work" class="btn btn--solid" data-magnetic><span data-i18n="hero.cta1">Ver trabajos</span></a>
+        <a href="#contact" class="btn btn--ghost" data-magnetic><span data-i18n="hero.cta2">Hablemos</span></a>
+      </div>
+      <p class="hero__loc reveal" data-delay="3"><span class="dot"></span><span data-i18n="hero.loc"></span></p>
+    </div>
+
+    <div class="hero__photo reveal" data-delay="1">
+      <div class="hero__photoInner" data-tilt>
+        <img src="assets/img/me/belen-01.jpg" alt="Belen Salto" width="900" height="1200">
+      </div>
+    </div>
+  </div>
+
+  <div class="hero__scroll" aria-hidden="true">
+    <svg viewBox="0 0 24 40"><path d="M12 4v24M6 22l6 6 6-6"/></svg>
+    <span data-i18n="hero.scroll">Deslizá</span>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <div class="marquee__set">
+      <span data-i18n="marq.1">Estrategia y social media</span><i>✦</i>
+      <span data-i18n="marq.2">Paid media · Meta Ads</span><i>✦</i>
+      <span data-i18n="marq.3">Diseño y UGC</span><i>✦</i>
+      <span data-i18n="marq.4">Branding e identidad</span><i>✦</i>
+      <span data-i18n="marq.5">Edición de video</span><i>✦</i>
+      <span data-i18n="marq.6">Copywriting</span><i>✦</i>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CIFRAS ============ -->
+<section class="section" id="stats">
+  <div class="wrap">
+    <p class="kicker kicker--rule reveal" data-i18n="stats.kicker">Resultados</p>
+    <h2 class="h2 h2--wide reveal" data-delay="1" data-i18n="stats.title"></h2>
+
+    <!-- Cada bloque dice de qué cuenta salen sus números -->
+    <div class="statgroup reveal">
+      <p class="statgroup__head">
+        <span class="statgroup__who" data-i18n="stats.g1">SYGSA · Instagram</span>
+        <span class="statgroup__when" data-i18n="stats.g1sub"></span>
+      </p>
+      <div class="stats stats--4">
+        <div class="stat">
+          <p class="stat__num" data-count="149" data-prefix="+" data-suffix="%">0</p>
+          <p class="stat__lab" data-i18n="stats.2"></p>
+        </div>
+        <div class="stat">
+          <p class="stat__num" data-count="654294" data-compact="1">0</p>
+          <p class="stat__lab" data-i18n="stats.1"></p>
+        </div>
+        <div class="stat">
+          <p class="stat__num" data-count="12450">0</p>
+          <p class="stat__lab" data-i18n="stats.3"></p>
+        </div>
+        <div class="stat">
+          <p class="stat__num" data-count="4293">0</p>
+          <p class="stat__lab" data-i18n="stats.4"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="statgroup reveal" data-delay="1">
+      <p class="statgroup__head">
+        <span class="statgroup__who" data-i18n="stats.g2">Mis números</span>
+        <span class="statgroup__when" data-i18n="stats.g2sub"></span>
+      </p>
+      <div class="stats stats--2">
+        <div class="stat">
+          <p class="stat__num" data-count="24000" data-prefix="+" data-compact="1">0</p>
+          <p class="stat__lab" data-i18n="stats.7"></p>
+        </div>
+        <div class="stat">
+          <p class="stat__num" data-count="6" data-prefix="+">0</p>
+          <p class="stat__lab" data-i18n="stats.5"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CASOS ============ -->
+<section class="section section--soft" id="cases">
+  <div class="wrap">
+    <p class="kicker kicker--rule reveal" data-i18n="case.kicker">Casos</p>
+    <h2 class="h2 h2--wide reveal" data-delay="1" data-i18n="case.title"></h2>
+
+    <p class="lead reveal" data-delay="2" data-i18n="case.lead"></p>
+
+    <!-- Cada tarjeta dice la modalidad: dentro del equipo o desde afuera -->
+    <div class="cases">
+      <article class="case reveal" data-delay="1">
+        <span class="case__mode" data-i18n="case.2.mode">In house</span>
+        <div class="case__head">
+          <h3 data-i18n="case.2.client">Grupo Renovae</h3>
+          <p class="case__role" data-i18n="case.2.role"></p>
+          <p class="case__when" data-i18n="case.2.when"></p>
+        </div>
+        <p class="case__desc" data-i18n="case.2.desc"></p>
+        <p class="case__result"><span class="case__arrow">→</span><span data-i18n="case.2.result"></span></p>
+        <button type="button" class="case__go" data-go-group="g.renovae"><span data-i18n="case.see">Ver algunas piezas</span> →</button>
+      </article>
+      <article class="case reveal" data-delay="2">
+        <span class="case__mode" data-i18n="case.1.mode">In house</span>
+        <div class="case__head">
+          <h3 data-i18n="case.1.client">SYGSA S.A.</h3>
+          <p class="case__role" data-i18n="case.1.role"></p>
+          <p class="case__when" data-i18n="case.1.when"></p>
+        </div>
+        <p class="case__desc" data-i18n="case.1.desc"></p>
+        <p class="case__result"><span class="case__arrow">→</span><span data-i18n="case.1.result"></span></p>
+        <button type="button" class="case__go" data-go-group="g.sygsa"><span data-i18n="case.see">Ver algunas piezas</span> →</button>
+      </article>
+      <article class="case reveal" data-delay="3">
+        <span class="case__mode" data-i18n="case.4.mode">In house</span>
+        <div class="case__head">
+          <h3 data-i18n="case.4.client">Jupplies</h3>
+          <p class="case__role" data-i18n="case.4.role"></p>
+          <p class="case__when" data-i18n="case.4.when"></p>
+        </div>
+        <p class="case__desc" data-i18n="case.4.desc"></p>
+        <p class="case__result"><span class="case__arrow">→</span><span data-i18n="case.4.result"></span></p>
+        <button type="button" class="case__go" data-go-group="g.jupplies"><span data-i18n="case.see">Ver algunas piezas</span> →</button>
+      </article>
+      <article class="case reveal" data-delay="4">
+        <span class="case__mode" data-i18n="case.3.mode">Cliente freelance</span>
+        <div class="case__head">
+          <h3 data-i18n="case.3.client">Schalke</h3>
+          <p class="case__role" data-i18n="case.3.role"></p>
+          <p class="case__when" data-i18n="case.3.when"></p>
+        </div>
+        <p class="case__desc" data-i18n="case.3.desc"></p>
+        <p class="case__result"><span class="case__arrow">→</span><span data-i18n="case.3.result"></span></p>
+        <button type="button" class="case__go" data-go-doc="manual-schalke,20,man.schalke"><span data-i18n="case.seeDoc">Ver el manual</span> →</button>
+      </article>
+    </div>
+
+    <!-- Clientes por proyecto: la lista se edita en assets/js/main.js -->
+    <div class="clients reveal">
+      <p class="kicker kicker--rule" data-i18n="cli.kicker">Clientes por proyecto</p>
+      <p class="lead" data-i18n="cli.lead"></p>
+      <ul class="clientgrid" id="clientGrid"></ul>
+    </div>
+
+    <!-- Marca propia: donde produce su propio UGC -->
+    <!-- Marca propia: el único proyecto que hizo de punta a punta -->
+    <div class="own reveal">
+      <p class="kicker kicker--rule" data-i18n="own.kicker">Proyecto propio</p>
+      <h3 class="own__t" data-i18n="own.t"></h3>
+
+      <div class="own__grid">
+        <div class="own__text">
+          <p class="own__p" data-i18n="own.p1"></p>
+          <p class="own__p" data-i18n="own.p2"></p>
+          <p class="own__p" data-i18n="own.p3"></p>
+          <p class="own__p" data-i18n="own.p4"></p>
+          <div class="own__links">
+            <a class="own__link" href="https://loschihuahuas.com" target="_blank" rel="noopener">
+              <span class="own__n">loschihuahuas.com</span>
+              <span class="own__s" data-i18n="own.web">Sitio propio</span>
+            </a>
+            <a class="own__link" href="https://www.tiktok.com/@somosromeylolo" target="_blank" rel="noopener">
+              <span class="own__n">@somosromeylolo</span>
+              <span class="own__s" data-i18n="own.tiktok">TikTok</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="own__devices">
+          <!-- El sitio real dentro de la tablet: no es una captura,
+               así se actualiza solo cuando cambia loschihuahuas.com -->
+          <a class="tablet" href="https://loschihuahuas.com" target="_blank" rel="noopener"
+             data-i18n-title="own.tabletAlt" title="loschihuahuas.com">
+            <span class="tablet__cam" aria-hidden="true"></span>
+            <span class="tablet__screen">
+              <iframe src="https://loschihuahuas.com" title="loschihuahuas.com"
+                      loading="lazy" referrerpolicy="no-referrer" tabindex="-1" aria-hidden="true"></iframe>
+            </span>
+          </a>
+
+          <!-- El video del lanzamiento, en marco de teléfono porque es vertical -->
+          <button class="phoneframe" type="button"
+                  data-video="assets/video/reel/lc-lanzamiento-web.mp4"
+                  data-i18n-aria="own.videoAlt" aria-label="Ver el video de lanzamiento">
+            <span class="phoneframe__screen">
+              <img src="assets/video/reel/lc-lanzamiento-web.jpg" width="393" height="700"
+                   loading="lazy" alt="">
+              <span class="phoneframe__play" aria-hidden="true"></span>
+            </span>
+            <span class="phoneframe__cap" data-i18n="own.videoT"></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="stats stats--4 own__stats">
+        <div class="stat">
+          <p class="stat__num" data-count="24400" data-prefix="+" data-compact="1">0</p>
+          <p class="stat__lab" data-i18n="own.k1"></p>
+        </div>
+        <div class="stat">
+          <p class="stat__num" data-count="1200000" data-compact="1">0</p>
+          <p class="stat__lab" data-i18n="own.k2"></p>
+        </div>
+        <div class="stat">
+          <p class="stat__num" data-count="157">0</p>
+          <p class="stat__lab" data-i18n="own.k3"></p>
+        </div>
+        <div class="stat">
+          <p class="stat__num" data-count="1000" data-prefix="+">0</p>
+          <p class="stat__lab" data-i18n="own.k4"></p>
+        </div>
+      </div>
+
+      <blockquote class="own__quote" data-i18n="own.quote"></blockquote>
+
+      <div class="chapterbody" data-chapter="lc"></div>
+    </div>
+
+    <p class="kicker kicker--rule reveal" data-i18n="val.kicker">Mi forma de trabajar</p>
+    <div class="values">
+      <article class="value reveal" data-delay="1"><span class="value__n">01</span><h3 data-i18n="val.1"></h3><p data-i18n="val.1d"></p></article>
+      <article class="value reveal" data-delay="2"><span class="value__n">02</span><h3 data-i18n="val.2"></h3><p data-i18n="val.2d"></p></article>
+      <article class="value reveal" data-delay="3"><span class="value__n">03</span><h3 data-i18n="val.3"></h3><p data-i18n="val.3d"></p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRABAJOS ============ -->
+<section class="section" id="work">
+  <div class="wrap">
+    <p class="kicker kicker--rule reveal" data-i18n="work.kicker">Trabajos</p>
+    <h2 class="h2 h2--wide reveal" data-delay="1" data-i18n="work.title"></h2>
+    <p class="lead reveal" data-delay="2" data-i18n="work.lead"></p>
+
+    <!-- Popurrí: una selección que pasa sola, como el marquee de arriba.
+         Muestra el rango de un vistazo; el detalle está en los capítulos. -->
+    <div class="popurri reveal" data-delay="2">
+      <div class="popurri__track"></div>
+    </div>
+
+    <!-- Índice del capítulo: lleva directo, sin scrollear todo -->
+    <nav class="chapidx reveal" data-delay="3" aria-label="Capítulos">
+      <a href="#ch-brand"  data-i18n="idx.brand">Identidad</a>
+      <a href="#ch-social" data-i18n="idx.social">Redes</a>
+      <a href="#reel"      data-i18n="idx.video">Video</a>
+      <a href="#ch-phys"   data-i18n="idx.phys">Físico</a>
+      <a href="#ch-data"   data-i18n="idx.data">Datos</a>
+    </nav>
+
+    <!-- Un capítulo por disciplina: primero qué hago, después las piezas.
+         Las galerías se llenan desde main.js según la categoría. -->
+    <article class="chapter" id="ch-brand">
+      <button type="button" class="chapter__head reveal" aria-expanded="false" aria-controls="ch-brand-body">
+        <p class="chapter__n">01</p>
+        <h3 class="chapter__t" data-i18n="ch.brand.t"></h3>
+        <p class="chapter__d" data-i18n="ch.brand.d"></p>
+        <span class="chapter__toggle" aria-hidden="true"></span>
+      </button>
+      <div class="chapter__fold" id="ch-brand-body" hidden>
+      <!-- Manuales de marca: se leen en el visor, sin descarga.
+           Los PDF originales pesan más de 13 MB cada uno. -->
+      <div class="chapterbody">
+        <div class="docs">
+          <div class="doc reveal doc--nodl" data-delay="1">
+            <button type="button" class="doc__main" data-doc="manual-kausa" data-pages="19" data-title="man.kausa">
+              <span class="doc__n">01</span>
+              <span class="doc__body"><span class="doc__t" data-i18n="man.kausa"></span><span class="doc__s" data-i18n="man.kausaSub"></span></span>
+              <span class="doc__go" data-i18n="docs.open">Ver</span>
+            </button>
+          </div>
+          <div class="doc reveal doc--nodl" data-delay="2">
+            <button type="button" class="doc__main" data-doc="manual-schalke" data-pages="20" data-title="man.schalke">
+              <span class="doc__n">02</span>
+              <span class="doc__body"><span class="doc__t" data-i18n="man.schalke"></span><span class="doc__s" data-i18n="man.schalkeSub"></span></span>
+              <span class="doc__go" data-i18n="docs.open">Ver</span>
+            </button>
+          </div>
+          <div class="doc reveal doc--nodl" data-delay="3">
+            <button type="button" class="doc__main" data-doc="identidad-meme" data-pages="5" data-title="man.meme">
+              <span class="doc__n">03</span>
+              <span class="doc__body"><span class="doc__t" data-i18n="man.meme"></span><span class="doc__s" data-i18n="man.memeSub"></span></span>
+              <span class="doc__go" data-i18n="docs.open">Ver</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      </div>
+    </article>
+
+    <article class="chapter" id="ch-social">
+      <button type="button" class="chapter__head reveal" aria-expanded="false" aria-controls="ch-social-body">
+        <p class="chapter__n">02</p>
+        <h3 class="chapter__t" data-i18n="ch.social.t"></h3>
+        <p class="chapter__d" data-i18n="ch.social.d"></p>
+        <span class="chapter__toggle" aria-hidden="true"></span>
+      </button>
+      <div class="chapter__fold" id="ch-social-body" hidden>
+      <!-- El calendario mensual va antes de las piezas: primero cómo se
+           planifica el mes, después qué salió publicado. -->
+      <div class="docs docs--inchapter reveal">
+        <div class="doc doc--nodl">
+          <button type="button" class="doc__main" data-doc="calendario-galaktica" data-pages="4" data-title="man.calGal">
+            <span class="doc__n">01</span>
+            <span class="doc__body"><span class="doc__t" data-i18n="man.calGal"></span><span class="doc__s" data-i18n="man.calGalSub"></span></span>
+            <span class="doc__go" data-i18n="docs.open">Ver</span>
+          </button>
+        </div>
+        <div class="doc doc--nodl">
+          <button type="button" class="doc__main" data-doc="calendario-schalke" data-pages="7" data-title="man.calSch">
+            <span class="doc__n">02</span>
+            <span class="doc__body"><span class="doc__t" data-i18n="man.calSch"></span><span class="doc__s" data-i18n="man.calSchSub"></span></span>
+            <span class="doc__go" data-i18n="docs.open">Ver</span>
+          </button>
+        </div>
+      </div>
+      <div class="chapterbody" data-chapter="social"></div>
+      </div>
+    </article>
+
+    <article class="chapter" id="reel">
+      <button type="button" class="chapter__head reveal" aria-expanded="false" aria-controls="reel-body">
+        <p class="chapter__n">03</p>
+        <h3 class="chapter__t" data-i18n="ch.reel.t"></h3>
+        <p class="chapter__d" data-i18n="ch.reel.d"></p>
+        <span class="chapter__toggle" aria-hidden="true"></span>
+      </button>
+      <div class="chapter__fold" id="reel-body" hidden>
+      <div class="chapterbody" id="reelBody"></div>
+      </div>
+    </article>
+
+    <article class="chapter" id="ch-phys">
+      <button type="button" class="chapter__head reveal" aria-expanded="false" aria-controls="ch-phys-body">
+        <p class="chapter__n">04</p>
+        <h3 class="chapter__t" data-i18n="ch.phys.t"></h3>
+        <p class="chapter__d" data-i18n="ch.phys.d"></p>
+        <span class="chapter__toggle" aria-hidden="true"></span>
+      </button>
+      <div class="chapter__fold" id="ch-phys-body" hidden>
+      <div class="docs docs--inchapter reveal">
+        <div class="doc">
+          <button type="button" class="doc__main" data-doc="merch-sygsa" data-pages="4" data-title="man.merch">
+            <span class="doc__n">01</span>
+            <span class="doc__body"><span class="doc__t" data-i18n="man.merch"></span><span class="doc__s" data-i18n="man.merchSub"></span></span>
+            <span class="doc__go" data-i18n="docs.open">Ver</span>
+          </button>
+          <a class="doc__dl" href="assets/docs/merch-sygsa.pdf" download data-i18n="docs.dl">PDF</a>
+        </div>
+      </div>
+      <div class="chapterbody" data-chapter="phys"></div>
+      </div>
+    </article>
+
+    <article class="chapter" id="ch-data">
+      <button type="button" class="chapter__head reveal" aria-expanded="false" aria-controls="ch-data-body">
+        <p class="chapter__n">05</p>
+        <h3 class="chapter__t" data-i18n="ch.data.t"></h3>
+        <p class="chapter__d" data-i18n="ch.data.d"></p>
+        <span class="chapter__toggle" aria-hidden="true"></span>
+      </button>
+      <div class="chapter__fold" id="ch-data-body" hidden>
+      <div class="chapterbody" data-chapter="data"></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ DOSSIERS ============ -->
+<section class="section section--soft" id="docs">
+  <div class="wrap">
+    <p class="kicker kicker--rule reveal" data-i18n="docs.kicker">Dossiers</p>
+    <h2 class="h2 h2--wide reveal" data-delay="1" data-i18n="docs.title"></h2>
+    <p class="lead reveal" data-delay="2" data-i18n="docs.lead"></p>
+
+    <!-- Se abren en un visor dentro del sitio. El PDF queda como
+         descarga secundaria, para quien lo quiera guardar. -->
+    <div class="docs">
+      <div class="doc reveal" data-delay="1">
+        <button type="button" class="doc__main" data-doc="gestion-estrategia" data-pages="8" data-title="docs.2">
+          <span class="doc__n">01</span>
+          <span class="doc__body"><span class="doc__t" data-i18n="docs.2"></span><span class="doc__s" data-i18n="docs.2sub"></span></span>
+          <span class="doc__go" data-i18n="docs.open">Ver</span>
+        </button>
+        <a class="doc__dl" href="assets/docs/gestion-estrategia.pdf" download data-i18n="docs.dl">PDF</a>
+      </div>
+      <div class="doc reveal" data-delay="2">
+        <button type="button" class="doc__main" data-doc="diseno-contenido-rrss" data-pages="10" data-title="docs.1">
+          <span class="doc__n">02</span>
+          <span class="doc__body"><span class="doc__t" data-i18n="docs.1"></span><span class="doc__s" data-i18n="docs.1sub"></span></span>
+          <span class="doc__go" data-i18n="docs.open">Ver</span>
+        </button>
+        <a class="doc__dl" href="assets/docs/diseno-contenido-rrss.pdf" download data-i18n="docs.dl">PDF</a>
+      </div>
+      <div class="doc reveal" data-delay="3">
+        <button type="button" class="doc__main" data-doc="ugc" data-pages="7" data-title="docs.3">
+          <span class="doc__n">03</span>
+          <span class="doc__body"><span class="doc__t" data-i18n="docs.3"></span><span class="doc__s" data-i18n="docs.3sub"></span></span>
+          <span class="doc__go" data-i18n="docs.open">Ver</span>
+        </button>
+        <a class="doc__dl" href="assets/docs/ugc.pdf" download data-i18n="docs.dl">PDF</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICIOS ============ -->
+<section class="section" id="services">
+  <div class="wrap">
+    <p class="kicker kicker--rule reveal" data-i18n="srv.kicker">Servicios</p>
+    <h2 class="h2 h2--wide reveal" data-delay="1" data-i18n="srv.title"></h2>
+
+    <div class="srv">
+      <article class="srvcard reveal" data-delay="1"><span class="srvcard__n">01</span><h3 data-i18n="srv.1"></h3><p data-i18n="srv.1d"></p></article>
+      <article class="srvcard reveal" data-delay="2"><span class="srvcard__n">02</span><h3 data-i18n="srv.2"></h3><p data-i18n="srv.2d"></p></article>
+      <article class="srvcard reveal" data-delay="3"><span class="srvcard__n">03</span><h3 data-i18n="srv.3"></h3><p data-i18n="srv.3d"></p></article>
+      <article class="srvcard reveal" data-delay="4"><span class="srvcard__n">04</span><h3 data-i18n="srv.4"></h3><p data-i18n="srv.4d"></p></article>
+      <article class="srvcard reveal" data-delay="5"><span class="srvcard__n">05</span><h3 data-i18n="srv.5"></h3><p data-i18n="srv.5d"></p></article>
+      <article class="srvcard reveal" data-delay="6"><span class="srvcard__n">06</span><h3 data-i18n="srv.6"></h3><p data-i18n="srv.6d"></p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HERRAMIENTAS ============ -->
+<section class="section section--soft" id="tools">
+  <div class="wrap">
+    <p class="kicker kicker--rule reveal" data-i18n="tools.kicker">Herramientas</p>
+    <h2 class="h2 h2--wide reveal" data-delay="1" data-i18n="tools.title"></h2>
+  </div>
+  <div class="toolrow" aria-hidden="true">
+    <div class="toolrow__track">
+      <div class="toolrow__set">
+        <span>Canva</span><span>CapCut</span><span>Adobe Premiere</span><span>Photoshop</span>
+        <span>Meta Business Suite</span><span>Meta Ads Manager</span><span>Metricool</span>
+        <span>Emblue</span><span>Notion</span><span>Trello</span><span>Odoo</span><span>ChatGPT</span><span>Claude</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOBRE MÍ ============ -->
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="about">
+      <div class="about__text">
+        <p class="kicker kicker--rule reveal" data-i18n="about.kicker">Sobre mí</p>
+        <h2 class="h2 reveal" data-delay="1" data-i18n="about.title"></h2>
+        <p class="body reveal" data-delay="2" data-i18n="about.p1"></p>
+        <p class="body reveal" data-delay="3" data-i18n="about.p2"></p>
+
+        <dl class="promise reveal" data-delay="4">
+          <div class="pcard"><dt data-i18n="about.promiseLab">Promesa</dt><dd data-i18n="about.promise"></dd></div>
+          <div class="pcard"><dt data-i18n="about.whoLab">A quién le hablo</dt><dd data-i18n="about.who"></dd></div>
+          <div class="pcard"><dt data-i18n="about.diffLab">Diferencial</dt><dd data-i18n="about.diff"></dd></div>
+        </dl>
+
+      </div>
+
+      <div class="about__media">
+        <figure class="about__photo reveal" data-delay="1" data-tilt>
+          <img src="assets/img/me/belen-03.jpg" alt="Belen Salto trabajando" loading="lazy">
+        </figure>      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ POR QUÉ MARKETING ============ -->
+<section class="section section--soft" id="why">
+  <div class="wrap">
+    <div class="why">
+      <div class="why__text">
+        <p class="kicker kicker--rule reveal" data-i18n="why.kicker">Por qué marketing</p>
+        <h2 class="h2 reveal" data-delay="1" data-i18n="why.t"></h2>
+        <p class="body reveal" data-delay="2" data-i18n="why.p1"></p>
+        <p class="body reveal" data-delay="3" data-i18n="why.p2"></p>
+        <p class="body reveal" data-delay="4" data-i18n="why.p3"></p>
+        <blockquote class="why__q reveal" data-delay="5" data-i18n="why.quote"></blockquote>
+        <p class="body reveal" data-delay="6" data-i18n="why.p4"></p>
+      </div>
+
+      <!-- Collage: dos teléfonos torcidos que se pisan, uno grande y uno
+           chico. La foto con su papá va encima, apoyada en la esquina. -->
+      <div class="why__photos">
+        <figure class="why__photo why__photo--a reveal" data-delay="3">
+          <span class="phonebody">
+            <span class="phonebody__notch" aria-hidden="true"></span>
+            <span class="phonebody__screen">
+              <img src="assets/img/me/recibida-fasta.jpg" width="960" height="1280" loading="lazy"
+                   alt="" data-i18n-alt="why.photoAlt">
+            </span>
+          </span>
+          <figcaption data-i18n="why.photoCap"></figcaption>
+        </figure>
+
+        <figure class="why__photo why__photo--b reveal" data-delay="4">
+          <span class="phonebody">
+            <span class="phonebody__notch" aria-hidden="true"></span>
+            <span class="phonebody__screen">
+              <img src="assets/img/me/papa.jpg" width="1200" height="900" loading="lazy"
+                   alt="" data-i18n-alt="why.papaAlt">
+            </span>
+          </span>
+          <figcaption data-i18n="why.papaCap"></figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FORMACIÓN ============ -->
+<section class="section" id="edu">
+  <div class="wrap">
+    <p class="kicker kicker--rule reveal" data-i18n="edu.kicker">Formación</p>
+    <h2 class="h2 h2--wide reveal" data-delay="1" data-i18n="edu.title"></h2>
+
+    <div class="edu reveal" data-delay="2">
+      <div class="edu__col">
+        <p class="kicker" data-i18n="edu.studies">Estudios</p>
+        <p class="edu__t" data-i18n="edu.1"></p>
+        <p class="edu__s" data-i18n="edu.1sub"></p>
+        <p class="edu__t" data-i18n="edu.2"></p>
+        <p class="edu__s" data-i18n="edu.2sub"></p>
+      </div>
+      <div class="edu__col">
+        <p class="kicker" data-i18n="edu.langTitle">Idiomas</p>
+        <p class="edu__t" data-i18n="edu.lang1"></p>
+        <p class="edu__t" data-i18n="edu.lang2"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACTO ============ -->
+<section class="section section--cta" id="contact">
+  <div class="wrap">
+    <p class="kicker reveal" data-i18n="cta.kicker">Hablemos</p>
+    <h2 class="cta__title reveal" data-delay="1"><span data-i18n="cta.title1">Contame qué necesita</span> <b data-i18n="cta.title2">tu marca.</b></h2>
+    <p class="lead lead--center reveal" data-delay="2" data-i18n="cta.lead"></p>
+
+    <div class="cta__btns reveal" data-delay="3">
+      <a class="btn btn--solid btn--lg" href="mailto:belen-salto@hotmail.com" data-magnetic><span data-i18n="cta.email">Escribime</span></a>
+      <a class="btn btn--ghost btn--lg" href="https://wa.me/5492214766173" target="_blank" rel="noopener" data-magnetic><span data-i18n="cta.wa">WhatsApp</span></a>
+      <a class="btn btn--ghost btn--lg" href="https://www.linkedin.com/in/belen-salto-377bb5208/" target="_blank" rel="noopener" data-magnetic><span data-i18n="cta.li">LinkedIn</span></a>
+      <a class="btn btn--ghost btn--lg" href="assets/docs/CV-Belen-Salto.pdf" target="_blank" rel="noopener" data-magnetic><span data-i18n="cta.cv">Descargar CV</span></a>
+    </div>
+
+    <dl class="cta__meta reveal" data-delay="4">
+      <div><dt>Email</dt><dd><a href="mailto:belen-salto@hotmail.com">belen-salto@hotmail.com</a></dd></div>
+      <div><dt>Tel</dt><dd><a href="tel:+5492214766173">+54 9 221 4766173</a></dd></div>
+      <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/belen-salto-377bb5208/" target="_blank" rel="noopener">/in/belensalto</a></dd></div>
+      <div><dt data-i18n="cta.locLabel">Ubicación</dt><dd data-i18n="cta.locValue"></dd></div>
+    </dl>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <p data-i18n="foot.made">Belen Salto · Lic. Marketing</p>
+  <p>© <span id="year">2026</span></p>
+  <a href="#top" class="foot__top" data-magnetic><span data-i18n="foot.top">Volver arriba</span> ↑</a>
+</footer>
+
+<div class="lbox" id="lbox" aria-hidden="true" role="dialog" aria-modal="true">
+  <button type="button" class="lbox__close" id="lboxClose" aria-label="Cerrar">✕</button>
+  <button type="button" class="lbox__nav lbox__nav--prev" id="lboxPrev" aria-label="Anterior">‹</button>
+  <button type="button" class="lbox__nav lbox__nav--next" id="lboxNext" aria-label="Siguiente">›</button>
+  <figure class="lbox__fig">
+    <img id="lboxImg" src="" alt="">
+    <figcaption><span id="lboxTitle"></span><em id="lboxSub"></em></figcaption>
+  </figure>
+</div>
+
+<div class="docmodal" id="docmodal" aria-hidden="true" role="dialog" aria-modal="true">
+  <header class="docmodal__bar">
+    <p class="docmodal__t" id="docTitle"></p>
+    <div class="docmodal__actions">
+      <a class="docmodal__dl" id="docDl" href="#" download data-i18n="docs.dl">PDF</a>
+      <button type="button" class="docmodal__close" id="docClose" aria-label="Cerrar">✕</button>
+    </div>
+  </header>
+  <div class="docmodal__pages" id="docPages"></div>
+</div>
+
+<div class="vmodal" id="vmodal" aria-hidden="true" role="dialog" aria-modal="true">
+  <button type="button" class="vmodal__close" id="vmodalClose" aria-label="Cerrar">✕</button>
+  <video id="vmodalVideo" controls playsinline preload="none"></video>
+</div>
+
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
