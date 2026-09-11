@@ -7,6 +7,15 @@
   'use strict';
 
   const $  = (s, c) => (c || document).querySelector(s);
+
+  /* WebP pesa la mitad y lo entiende todo navegador desde 2020. Por si
+     alguno no puede, cualquier imagen que falle vuelve al JPG original. */
+  document.addEventListener('error', e => {
+    const el = e.target;
+    if (el.tagName !== 'IMG' || !/\.webp($|\?)/.test(el.src) || el.dataset.reintento) return;
+    el.dataset.reintento = '1';
+    el.src = el.src.replace(/\.webp/, el.src.includes('cartel-amelia') ? '.png' : '.jpg');
+  }, true);
   const $$ = (s, c) => Array.from((c || document).querySelectorAll(s));
   const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -22,86 +31,86 @@
      ========================================================== */
 
   const WORKS = [
-    { src: 'assets/img/work/soc-renovae-01.jpg', cat: 'social', g: 'g.renovae', t: 'w.feedPost', s: 'w.renovae', shape: 'sq', fit: 1 },
-    { src: 'assets/img/work/soc-renovae-02.jpg', cat: 'social', g: 'g.renovae', t: 'w.feedPost', s: 'w.renovae', shape: 'sq', fit: 1 },
-    { src: 'assets/img/work/soc-renovae-03.jpg', cat: 'social', g: 'g.renovae', t: 'w.feedPost', s: 'w.renovae', shape: 'sq', fit: 1 },
-    { src: 'assets/img/work/soc-renovae-04.jpg', cat: 'social', g: 'g.renovae', t: 'w.feedPost', s: 'w.renovae', shape: 'sq', fit: 1 },
-    { src: 'assets/img/work/soc-renovae-hist-01.jpg', cat: 'social', g: 'g.renovaeHist', t: 'w.story', s: 'w.renovae', shape: 'tall', fit: 1 },
-    { src: 'assets/img/work/soc-renovae-hist-02.jpg', cat: 'social', g: 'g.renovaeHist', t: 'w.story', s: 'w.renovae', shape: 'tall', fit: 1 },
-    { src: 'assets/img/work/soc-renovae-hist-03.jpg', cat: 'social', g: 'g.renovaeHist', t: 'w.story', s: 'w.renovae', shape: 'tall', fit: 1 },
-    { src: 'assets/img/work/soc-renovae-hist-04.jpg', cat: 'social', g: 'g.renovaeHist', t: 'w.story', s: 'w.renovae', shape: 'tall', fit: 1 },
-    { src: 'assets/img/work/soc-renovae-hist-05.jpg', cat: 'social', g: 'g.renovaeHist', t: 'w.story', s: 'w.renovae', shape: 'tall', fit: 1 },
-    { src: 'assets/img/work/soc-renovae-hist-06.jpg', cat: 'social', g: 'g.renovaeHist', t: 'w.story', s: 'w.renovae', shape: 'tall', fit: 1 },
+    { src: 'assets/img/work/soc-renovae-01.webp', cat: 'social', g: 'g.renovae', t: 'w.feedPost', s: 'w.renovae', shape: 'sq', fit: 1 },
+    { src: 'assets/img/work/soc-renovae-02.webp', cat: 'social', g: 'g.renovae', t: 'w.feedPost', s: 'w.renovae', shape: 'sq', fit: 1 },
+    { src: 'assets/img/work/soc-renovae-03.webp', cat: 'social', g: 'g.renovae', t: 'w.feedPost', s: 'w.renovae', shape: 'sq', fit: 1 },
+    { src: 'assets/img/work/soc-renovae-04.webp', cat: 'social', g: 'g.renovae', t: 'w.feedPost', s: 'w.renovae', shape: 'sq', fit: 1 },
+    { src: 'assets/img/work/soc-renovae-hist-01.webp', cat: 'social', g: 'g.renovaeHist', t: 'w.story', s: 'w.renovae', shape: 'tall', fit: 1 },
+    { src: 'assets/img/work/soc-renovae-hist-02.webp', cat: 'social', g: 'g.renovaeHist', t: 'w.story', s: 'w.renovae', shape: 'tall', fit: 1 },
+    { src: 'assets/img/work/soc-renovae-hist-03.webp', cat: 'social', g: 'g.renovaeHist', t: 'w.story', s: 'w.renovae', shape: 'tall', fit: 1 },
+    { src: 'assets/img/work/soc-renovae-hist-04.webp', cat: 'social', g: 'g.renovaeHist', t: 'w.story', s: 'w.renovae', shape: 'tall', fit: 1 },
+    { src: 'assets/img/work/soc-renovae-hist-05.webp', cat: 'social', g: 'g.renovaeHist', t: 'w.story', s: 'w.renovae', shape: 'tall', fit: 1 },
+    { src: 'assets/img/work/soc-renovae-hist-06.webp', cat: 'social', g: 'g.renovaeHist', t: 'w.story', s: 'w.renovae', shape: 'tall', fit: 1 },
 
-    { src: 'assets/img/work/soc-altavoz-01.jpg',     cat: 'social', g: 'g.altavoz',  t: 'w.feedPost', s: 'w.altavoz',  shape: 'sq',   fit: 1 },
-    { src: 'assets/img/work/soc-altavoz-03.jpg',     cat: 'social', g: 'g.altavoz',  t: 'w.carousel', s: 'w.altavoz',  shape: 'sq',   fit: 1 },
-    { src: 'assets/img/work/soc-altavoz-04.jpg',     cat: 'social', g: 'g.altavoz',  t: 'w.carousel', s: 'w.altavoz',  shape: 'sq',   fit: 1 },
-    { src: 'assets/img/work/soc-altavoz-05.jpg',     cat: 'social', g: 'g.altavoz',  t: 'w.carousel', s: 'w.altavoz',  shape: 'sq',   fit: 1 },
-    { src: 'assets/img/work/soc-altavoz-06.jpg',     cat: 'social', g: 'g.altavoz',  t: 'w.carousel', s: 'w.altavoz',  shape: 'sq',   fit: 1 },
-    { src: 'assets/img/work/soc-altavoz-07.jpg',     cat: 'social', g: 'g.altavoz',  t: 'w.feedPost', s: 'w.altavoz',  shape: 'sq',   fit: 1 },
+    { src: 'assets/img/work/soc-altavoz-01.webp',     cat: 'social', g: 'g.altavoz',  t: 'w.feedPost', s: 'w.altavoz',  shape: 'sq',   fit: 1 },
+    { src: 'assets/img/work/soc-altavoz-03.webp',     cat: 'social', g: 'g.altavoz',  t: 'w.carousel', s: 'w.altavoz',  shape: 'sq',   fit: 1 },
+    { src: 'assets/img/work/soc-altavoz-04.webp',     cat: 'social', g: 'g.altavoz',  t: 'w.carousel', s: 'w.altavoz',  shape: 'sq',   fit: 1 },
+    { src: 'assets/img/work/soc-altavoz-05.webp',     cat: 'social', g: 'g.altavoz',  t: 'w.carousel', s: 'w.altavoz',  shape: 'sq',   fit: 1 },
+    { src: 'assets/img/work/soc-altavoz-06.webp',     cat: 'social', g: 'g.altavoz',  t: 'w.carousel', s: 'w.altavoz',  shape: 'sq',   fit: 1 },
+    { src: 'assets/img/work/soc-altavoz-07.webp',     cat: 'social', g: 'g.altavoz',  t: 'w.feedPost', s: 'w.altavoz',  shape: 'sq',   fit: 1 },
 
-    { src: 'assets/img/work/soc-bplay-01.jpg',       cat: 'social', g: 'g.bplay',    t: 'w.ad',      s: 'w.bplay',    shape: 'tall', fit: 1 },
-    { src: 'assets/img/work/soc-bplay-02.jpg',       cat: 'social', g: 'g.bplay',    t: 'w.ad',      s: 'w.bplay',    shape: 'tall', fit: 1 },
-    { src: 'assets/img/work/soc-bplay-05.jpg',       cat: 'social', g: 'g.bplay',    t: 'w.ad',      s: 'w.bplay',    shape: 'tall', fit: 1 },
-    { src: 'assets/img/work/soc-bplay-08.jpg',       cat: 'social', g: 'g.bplay',    t: 'w.ad',      s: 'w.bplay',    shape: 'tall', fit: 1 },
-    { src: 'assets/img/work/soc-bplay-09.jpg',       cat: 'social', g: 'g.bplay',    t: 'w.ad',      s: 'w.bplay',    shape: 'tall', fit: 1 },
-    { src: 'assets/img/work/soc-bplay-12.jpg',       cat: 'social', g: 'g.bplay',    t: 'w.ad',      s: 'w.bplay',    shape: 'tall', fit: 1 },
+    { src: 'assets/img/work/soc-bplay-01.webp',       cat: 'social', g: 'g.bplay',    t: 'w.ad',      s: 'w.bplay',    shape: 'tall', fit: 1 },
+    { src: 'assets/img/work/soc-bplay-02.webp',       cat: 'social', g: 'g.bplay',    t: 'w.ad',      s: 'w.bplay',    shape: 'tall', fit: 1 },
+    { src: 'assets/img/work/soc-bplay-05.webp',       cat: 'social', g: 'g.bplay',    t: 'w.ad',      s: 'w.bplay',    shape: 'tall', fit: 1 },
+    { src: 'assets/img/work/soc-bplay-08.webp',       cat: 'social', g: 'g.bplay',    t: 'w.ad',      s: 'w.bplay',    shape: 'tall', fit: 1 },
+    { src: 'assets/img/work/soc-bplay-09.webp',       cat: 'social', g: 'g.bplay',    t: 'w.ad',      s: 'w.bplay',    shape: 'tall', fit: 1 },
+    { src: 'assets/img/work/soc-bplay-12.webp',       cat: 'social', g: 'g.bplay',    t: 'w.ad',      s: 'w.bplay',    shape: 'tall', fit: 1 },
 
-    { src: 'assets/img/work/soc-kaishop-cc-02.jpg',      cat: 'social', g: 'g.kaishop', t: 'w.ad', s: 'w.kaishop', shape: 'tall', fit: 1 },
-    { src: 'assets/img/work/soc-kaishop-cc-04.jpg',      cat: 'social', g: 'g.kaishop', t: 'w.ad', s: 'w.kaishop', shape: 'tall', fit: 1 },
-    { src: 'assets/img/work/soc-kaishop-cc2-01.jpg',     cat: 'social', g: 'g.kaishop', t: 'w.ad', s: 'w.kaishop', shape: 'tall', fit: 1 },
-    { src: 'assets/img/work/soc-kaishop-cc2-03.jpg',     cat: 'social', g: 'g.kaishop', t: 'w.ad', s: 'w.kaishop', shape: 'tall', fit: 1 },
-    { src: 'assets/img/work/soc-kaishop-parches-01.jpg', cat: 'social', g: 'g.kaishop', t: 'w.ad', s: 'w.kaishopBr', shape: 'tall', fit: 1 },
-    { src: 'assets/img/work/soc-kaishop-parches-03.jpg', cat: 'social', g: 'g.kaishop', t: 'w.ad', s: 'w.kaishopBr', shape: 'tall', fit: 1 },
+    { src: 'assets/img/work/soc-kaishop-cc-02.webp',      cat: 'social', g: 'g.kaishop', t: 'w.ad', s: 'w.kaishop', shape: 'tall', fit: 1 },
+    { src: 'assets/img/work/soc-kaishop-cc-04.webp',      cat: 'social', g: 'g.kaishop', t: 'w.ad', s: 'w.kaishop', shape: 'tall', fit: 1 },
+    { src: 'assets/img/work/soc-kaishop-cc2-01.webp',     cat: 'social', g: 'g.kaishop', t: 'w.ad', s: 'w.kaishop', shape: 'tall', fit: 1 },
+    { src: 'assets/img/work/soc-kaishop-cc2-03.webp',     cat: 'social', g: 'g.kaishop', t: 'w.ad', s: 'w.kaishop', shape: 'tall', fit: 1 },
+    { src: 'assets/img/work/soc-kaishop-parches-01.webp', cat: 'social', g: 'g.kaishop', t: 'w.ad', s: 'w.kaishopBr', shape: 'tall', fit: 1 },
+    { src: 'assets/img/work/soc-kaishop-parches-03.webp', cat: 'social', g: 'g.kaishop', t: 'w.ad', s: 'w.kaishopBr', shape: 'tall', fit: 1 },
 
-    { src: 'assets/img/work/soc-sygsa-edificio-01.jpg', cat: 'social', g: 'g.sygsa', t: 'w.feedPost', s: 'w.sygsaEd', shape: 'sq', fit: 1 },
-    { src: 'assets/img/work/soc-sygsa-edificio-02.jpg', cat: 'social', g: 'g.sygsa', t: 'w.feedPost', s: 'w.sygsaEd', shape: 'sq', fit: 1 },
-    { src: 'assets/img/work/soc-sygsa-edificio-03.jpg', cat: 'social', g: 'g.sygsa', t: 'w.carousel', s: 'w.sygsaEd', shape: 'sq', fit: 1 },
-    { src: 'assets/img/work/soc-sygsa-edificio-05.jpg', cat: 'social', g: 'g.sygsa', t: 'w.carousel', s: 'w.sygsaEd', shape: 'sq', fit: 1 },
-    { src: 'assets/img/work/soc-sygsa-edificio-07.jpg', cat: 'social', g: 'g.sygsa', t: 'w.feedPost', s: 'w.sygsaEd', shape: 'sq', fit: 1 },
-    { src: 'assets/img/work/soc-sygsa-historia-01.jpg', cat: 'social', g: 'g.sygsaHist', t: 'w.story', s: 'w.sygsa', shape: 'tall', fit: 1 },
-    { src: 'assets/img/work/soc-sygsa-historia-02.jpg', cat: 'social', g: 'g.sygsaHist', t: 'w.story', s: 'w.sygsa', shape: 'tall', fit: 1 },
-    { src: 'assets/img/work/soc-sygsa-historia-03.jpg', cat: 'social', g: 'g.sygsaHist', t: 'w.story', s: 'w.sygsa', shape: 'tall', fit: 1 },
-    { src: 'assets/img/work/soc-sygsa-historia-04.jpg', cat: 'social', g: 'g.sygsaHist', t: 'w.story', s: 'w.sygsa', shape: 'tall', fit: 1 },
-    { src: 'assets/img/work/soc-sygsa-historia-05.jpg', cat: 'social', g: 'g.sygsaHist', t: 'w.story', s: 'w.sygsa', shape: 'tall', fit: 1 },
+    { src: 'assets/img/work/soc-sygsa-edificio-01.webp', cat: 'social', g: 'g.sygsa', t: 'w.feedPost', s: 'w.sygsaEd', shape: 'sq', fit: 1 },
+    { src: 'assets/img/work/soc-sygsa-edificio-02.webp', cat: 'social', g: 'g.sygsa', t: 'w.feedPost', s: 'w.sygsaEd', shape: 'sq', fit: 1 },
+    { src: 'assets/img/work/soc-sygsa-edificio-03.webp', cat: 'social', g: 'g.sygsa', t: 'w.carousel', s: 'w.sygsaEd', shape: 'sq', fit: 1 },
+    { src: 'assets/img/work/soc-sygsa-edificio-05.webp', cat: 'social', g: 'g.sygsa', t: 'w.carousel', s: 'w.sygsaEd', shape: 'sq', fit: 1 },
+    { src: 'assets/img/work/soc-sygsa-edificio-07.webp', cat: 'social', g: 'g.sygsa', t: 'w.feedPost', s: 'w.sygsaEd', shape: 'sq', fit: 1 },
+    { src: 'assets/img/work/soc-sygsa-historia-01.webp', cat: 'social', g: 'g.sygsaHist', t: 'w.story', s: 'w.sygsa', shape: 'tall', fit: 1 },
+    { src: 'assets/img/work/soc-sygsa-historia-02.webp', cat: 'social', g: 'g.sygsaHist', t: 'w.story', s: 'w.sygsa', shape: 'tall', fit: 1 },
+    { src: 'assets/img/work/soc-sygsa-historia-03.webp', cat: 'social', g: 'g.sygsaHist', t: 'w.story', s: 'w.sygsa', shape: 'tall', fit: 1 },
+    { src: 'assets/img/work/soc-sygsa-historia-04.webp', cat: 'social', g: 'g.sygsaHist', t: 'w.story', s: 'w.sygsa', shape: 'tall', fit: 1 },
+    { src: 'assets/img/work/soc-sygsa-historia-05.webp', cat: 'social', g: 'g.sygsaHist', t: 'w.story', s: 'w.sygsa', shape: 'tall', fit: 1 },
 
-    { src: 'assets/img/work/soc-jupplies-01.jpg',    cat: 'social', g: 'g.jupplies', t: 'w.ad'      , s: 'w.jupplies', shape: 'sq', fit: 1 },
-    { src: 'assets/img/work/soc-jupplies-02.jpg',    cat: 'social', g: 'g.jupplies', t: 'w.ad'      , s: 'w.jupplies', shape: 'sq', fit: 1 },
-    { src: 'assets/img/work/soc-jupplies-micro-01.jpg', cat: 'social', g: 'g.jupplies', t: 'w.ad', s: 'w.jupplies', shape: 'sq', fit: 1 },
-    { src: 'assets/img/work/soc-jupplies-micro-02.jpg', cat: 'social', g: 'g.jupplies', t: 'w.ad', s: 'w.jupplies', shape: 'sq', fit: 1 },
-    { src: 'assets/img/work/soc-jupplies-03.jpg',    cat: 'social', g: 'g.jupplies', t: 'w.ad'      , s: 'w.jupplies', shape: 'sq', fit: 1 },
-    { src: 'assets/img/work/soc-jupplies-04.jpg',    cat: 'social', g: 'g.jupplies', t: 'w.ad'      , s: 'w.jupplies', shape: 'sq', fit: 1 },
-    { src: 'assets/img/work/soc-jupplies-micro-03.jpg', cat: 'social', g: 'g.jupplies', t: 'w.ad', s: 'w.jupplies', shape: 'sq', fit: 1 },
-    { src: 'assets/img/work/soc-jupplies-micro-04.jpg', cat: 'social', g: 'g.jupplies', t: 'w.ad', s: 'w.jupplies', shape: 'sq', fit: 1 },
-    { src: 'assets/img/work/soc-jupplies-hist-01.jpg', cat: 'social', g: 'g.juppliesHist', t: 'w.story', s: 'w.jupplies', shape: 'tall', fit: 1 },
-    { src: 'assets/img/work/soc-jupplies-hist-02.jpg', cat: 'social', g: 'g.juppliesHist', t: 'w.story', s: 'w.jupplies', shape: 'tall', fit: 1 },
-    { src: 'assets/img/work/soc-jupplies-hist-03.jpg', cat: 'social', g: 'g.juppliesHist', t: 'w.story', s: 'w.jupplies', shape: 'tall', fit: 1 },
+    { src: 'assets/img/work/soc-jupplies-01.webp',    cat: 'social', g: 'g.jupplies', t: 'w.ad'      , s: 'w.jupplies', shape: 'sq', fit: 1 },
+    { src: 'assets/img/work/soc-jupplies-02.webp',    cat: 'social', g: 'g.jupplies', t: 'w.ad'      , s: 'w.jupplies', shape: 'sq', fit: 1 },
+    { src: 'assets/img/work/soc-jupplies-micro-01.webp', cat: 'social', g: 'g.jupplies', t: 'w.ad', s: 'w.jupplies', shape: 'sq', fit: 1 },
+    { src: 'assets/img/work/soc-jupplies-micro-02.webp', cat: 'social', g: 'g.jupplies', t: 'w.ad', s: 'w.jupplies', shape: 'sq', fit: 1 },
+    { src: 'assets/img/work/soc-jupplies-03.webp',    cat: 'social', g: 'g.jupplies', t: 'w.ad'      , s: 'w.jupplies', shape: 'sq', fit: 1 },
+    { src: 'assets/img/work/soc-jupplies-04.webp',    cat: 'social', g: 'g.jupplies', t: 'w.ad'      , s: 'w.jupplies', shape: 'sq', fit: 1 },
+    { src: 'assets/img/work/soc-jupplies-micro-03.webp', cat: 'social', g: 'g.jupplies', t: 'w.ad', s: 'w.jupplies', shape: 'sq', fit: 1 },
+    { src: 'assets/img/work/soc-jupplies-micro-04.webp', cat: 'social', g: 'g.jupplies', t: 'w.ad', s: 'w.jupplies', shape: 'sq', fit: 1 },
+    { src: 'assets/img/work/soc-jupplies-hist-01.webp', cat: 'social', g: 'g.juppliesHist', t: 'w.story', s: 'w.jupplies', shape: 'tall', fit: 1 },
+    { src: 'assets/img/work/soc-jupplies-hist-02.webp', cat: 'social', g: 'g.juppliesHist', t: 'w.story', s: 'w.jupplies', shape: 'tall', fit: 1 },
+    { src: 'assets/img/work/soc-jupplies-hist-03.webp', cat: 'social', g: 'g.juppliesHist', t: 'w.story', s: 'w.jupplies', shape: 'tall', fit: 1 },
 
     /* ---------- 03 · De lo digital a lo físico ---------- */
-    { src: 'assets/img/work/brand-tote-real.jpg',    cat: 'phys', g: 'g.merch',   t: 'w.tote',     s: 'w.sygsa',   shape: 'tall' },
-    { src: 'assets/img/work/phys-lentes-renovae.jpg', cat: 'phys', g: 'g.merch', t: 'w.lentes', s: 'w.renovae', shape: 'tall' },
-    { src: 'assets/img/work/phys-merch-aura.jpg', cat: 'phys', g: 'g.merch', t: 'w.merchAura', s: 'w.aura', shape: 'tall' },
+    { src: 'assets/img/work/brand-tote-real.webp',    cat: 'phys', g: 'g.merch',   t: 'w.tote',     s: 'w.sygsa',   shape: 'tall' },
+    { src: 'assets/img/work/phys-lentes-renovae.webp', cat: 'phys', g: 'g.merch', t: 'w.lentes', s: 'w.renovae', shape: 'tall' },
+    { src: 'assets/img/work/phys-merch-aura.webp', cat: 'phys', g: 'g.merch', t: 'w.merchAura', s: 'w.aura', shape: 'tall' },
 
-    { src: 'assets/img/work/brand-print.jpg',        cat: 'phys', g: 'g.print',   t: 'w.print',    s: 'w.aura',    shape: 'sq'   },
-    { src: 'assets/img/work/brand-desk.jpg',         cat: 'phys', g: 'g.print',   t: 'w.desk',     s: 'w.sygsa',   shape: 'sq'   },
-    { src: 'assets/img/work/phys-diptico-amelia-01.jpg', cat: 'phys', g: 'g.print', t: 'w.diptico', s: 'w.amelia', shape: 'sq'   },
-    { src: 'assets/img/work/phys-diptico-amelia-02.jpg', cat: 'phys', g: 'g.print', t: 'w.dipticoInt', s: 'w.amelia', shape: 'sq'   },
-    { src: 'assets/img/work/phys-diptico-amelia-03.jpg', cat: 'phys', g: 'g.print', t: 'w.dipticoDorso', s: 'w.amelia', shape: 'sq'   },
+    { src: 'assets/img/work/brand-print.webp',        cat: 'phys', g: 'g.print',   t: 'w.print',    s: 'w.aura',    shape: 'sq'   },
+    { src: 'assets/img/work/brand-desk.webp',         cat: 'phys', g: 'g.print',   t: 'w.desk',     s: 'w.sygsa',   shape: 'sq'   },
+    { src: 'assets/img/work/phys-diptico-amelia-01.webp', cat: 'phys', g: 'g.print', t: 'w.diptico', s: 'w.amelia', shape: 'sq'   },
+    { src: 'assets/img/work/phys-diptico-amelia-02.webp', cat: 'phys', g: 'g.print', t: 'w.dipticoInt', s: 'w.amelia', shape: 'sq'   },
+    { src: 'assets/img/work/phys-diptico-amelia-03.webp', cat: 'phys', g: 'g.print', t: 'w.dipticoDorso', s: 'w.amelia', shape: 'sq'   },
 
-    { src: 'assets/img/work/phys-cartel-amelia.png', cat: 'phys', g: 'g.signage', t: 'w.cartel',   s: 'w.amelia',  shape: 'wide', fit: 1 },
-    { src: 'assets/img/work/brand-pieces.jpg',       cat: 'phys', g: 'g.signage', t: 'w.pieces',   s: 'w.renovae', shape: 'sq'   },
-    { src: 'assets/img/work/brand-signage.jpg',      cat: 'phys', g: 'g.signage', t: 'w.signage',  s: 'w.sygsa',   shape: 'sq'   },
+    { src: 'assets/img/work/phys-cartel-amelia.webp', cat: 'phys', g: 'g.signage', t: 'w.cartel',   s: 'w.amelia',  shape: 'wide', fit: 1 },
+    { src: 'assets/img/work/brand-pieces.webp',       cat: 'phys', g: 'g.signage', t: 'w.pieces',   s: 'w.renovae', shape: 'sq'   },
+    { src: 'assets/img/work/brand-signage.webp',      cat: 'phys', g: 'g.signage', t: 'w.signage',  s: 'w.sygsa',   shape: 'sq'   },
 
     /* ---------- Pruebas de Los Chihuahuas ---------- */
-    { src: 'assets/img/work/lc-tiktok-perfil.jpg', cat: 'lc', t: 'w.lcPerfil', s: 'w.lcPerfilSub', shape: 'wide', fit: 1 },
-    { src: 'assets/img/work/lc-google.jpg',        cat: 'lc', t: 'w.lcGoogle', s: 'w.lcGoogleSub', shape: 'sq',   fit: 1 },
-    { src: 'assets/img/work/lc-tiktok-video.jpg',  cat: 'lc', t: 'w.lcVideo',  s: 'w.lcVideoSub',  shape: 'wide', fit: 1 },
+    { src: 'assets/img/work/lc-tiktok-perfil.webp', cat: 'lc', t: 'w.lcPerfil', s: 'w.lcPerfilSub', shape: 'wide', fit: 1 },
+    { src: 'assets/img/work/lc-google.webp',        cat: 'lc', t: 'w.lcGoogle', s: 'w.lcGoogleSub', shape: 'sq',   fit: 1 },
+    { src: 'assets/img/work/lc-tiktok-video.webp',  cat: 'lc', t: 'w.lcVideo',  s: 'w.lcVideoSub',  shape: 'wide', fit: 1 },
 
     /* ---------- 04 · Datos y performance ---------- */
-    { src: 'assets/img/work/data-views.jpg',         cat: 'data', t: 'w.views',  s: 'w.viewsSub',  shape: 'tall', phone: true },
-    { src: 'assets/img/work/data-panel.jpg',         cat: 'data', t: 'w.panel',  s: 'w.panelSub',  shape: 'tall', phone: true },
-    { src: 'assets/img/work/data-interactions.jpg',  cat: 'data', t: 'w.inter',  s: 'w.interSub',  shape: 'tall', phone: true },
-    { src: 'assets/img/work/data-followers.jpg',     cat: 'data', t: 'w.follow', s: 'w.followSub', shape: 'tall', phone: true }
+    { src: 'assets/img/work/data-views.webp',         cat: 'data', t: 'w.views',  s: 'w.viewsSub',  shape: 'tall', phone: true },
+    { src: 'assets/img/work/data-panel.webp',         cat: 'data', t: 'w.panel',  s: 'w.panelSub',  shape: 'tall', phone: true },
+    { src: 'assets/img/work/data-interactions.webp',  cat: 'data', t: 'w.inter',  s: 'w.interSub',  shape: 'tall', phone: true },
+    { src: 'assets/img/work/data-followers.webp',     cat: 'data', t: 'w.follow', s: 'w.followSub', shape: 'tall', phone: true }
   ];
 
   /* ==========================================================
@@ -117,19 +126,19 @@
      el de su proyecto; con { f, n } se le pone uno más corto, porque en
      una tira que pasa no entra un subtítulo largo. */
   const PICKS = [
-    'soc-renovae-01.jpg',
-    'phys-cartel-amelia.png',
-    'soc-altavoz-01.jpg',
-    'soc-sygsa-historia-01.jpg',
-    'soc-bplay-01.jpg',
-    'brand-tote-real.jpg',
-    'soc-jupplies-micro-01.jpg',
-    'soc-kaishop-cc-02.jpg',
-    'phys-diptico-amelia-01.jpg',
-    'soc-renovae-hist-04.jpg',
-    { f: 'soc-sygsa-edificio-01.jpg', n: 'w.sygsa' },
-    'brand-print.jpg',
-    'brand-signage.jpg'
+    'soc-renovae-01.webp',
+    'phys-cartel-amelia.webp',
+    'soc-altavoz-01.webp',
+    'soc-sygsa-historia-01.webp',
+    'soc-bplay-01.webp',
+    'brand-tote-real.webp',
+    'soc-jupplies-micro-01.webp',
+    'soc-kaishop-cc-02.webp',
+    'phys-diptico-amelia-01.webp',
+    'soc-renovae-hist-04.webp',
+    { f: 'soc-sygsa-edificio-01.webp', n: 'w.sygsa' },
+    'brand-print.webp',
+    'brand-signage.webp'
   ];
 
   const REEL = [
@@ -706,7 +715,7 @@
         card.setAttribute('tabindex', '0');
 
         card.innerHTML =
-          '<img src="assets/video/reel/' + v.id + '.jpg" alt="" loading="lazy" decoding="async">' +
+          '<img src="assets/video/reel/' + v.id + '.webp" alt="" loading="lazy" decoding="async">' +
           '<span class="rcard__play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>' +
           '<figcaption class="rcard__cap"><span class="rcard__t"></span><span class="rcard__s"></span></figcaption>';
 

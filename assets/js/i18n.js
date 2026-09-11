@@ -67,8 +67,8 @@ const I18N = {
     "why.quote": "¿Y Marketing? ¿No te gusta? Tiene un poco de todo.",
     "why.photoAlt": "Belen Salto con su título de Licenciada en Marketing frente al cartel de la Universidad FASTA La Plata",
     "why.photoCap": "Licenciada en Marketing · Universidad FASTA, La Plata",
-    "why.papaAlt": "Belen Salto junto a su papá",
-    "why.papaCap": "Con mi papá",
+    "why.papaAlt": "El papá de Belen Salto",
+    "why.papaCap": "Mi papá",
     "why.p4": "Sin saberlo, esa pregunta marcó el inicio del camino que hoy me trae hasta acá. Él no pudo estar presente para verme recibir el título, pero fue una parte fundamental de este recorrido. Me gusta pensar que, de alguna manera, hoy también lo está celebrando conmigo.",
 
     /* --- Cifras --- */
@@ -415,8 +415,8 @@ const I18N = {
     "why.quote": "What about Marketing? Don't you like it? It has a bit of everything.",
     "why.photoAlt": "Belen Salto holding her Marketing degree in front of the Universidad FASTA La Plata sign",
     "why.photoCap": "Marketing degree · Universidad FASTA, La Plata",
-    "why.papaAlt": "Belen Salto with her dad",
-    "why.papaCap": "With my dad",
+    "why.papaAlt": "Belen Salto's dad",
+    "why.papaCap": "My dad",
     "why.p4": "Without knowing it, that question started the path that brings me here. He could not be there to see me receive the degree, but he was a fundamental part of this road. I like to think that, somehow, today he is celebrating it with me too.",
 
     "stats.kicker": "Results",

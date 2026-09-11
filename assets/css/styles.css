@@ -1507,7 +1507,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   border-radius: 18px; overflow: hidden; background: var(--c-ink);
 }
 .phonebody__screen img { width: 100%; height: 100%; object-fit: contain; display: block; }
-.why__photo--b .phonebody__screen { aspect-ratio: 1 / 1; }
+.why__photo--b .phonebody__screen { aspect-ratio: 682 / 1100; }
 
 /* La torcedura va en el marco y no en la figura: la animación de entrada
    usa transform sobre la figura y se pisarían. */
